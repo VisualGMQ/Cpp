@@ -1,0 +1,1 @@
+I have writed some text in textbuf.txt using cout
