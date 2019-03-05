@@ -5,12 +5,8 @@
 	GameBody类里除了isQuit()和构造函数之外，所有的函数都是virtual函数，意味着你可以重写来实现自己的功能。一般都是重写update()函数来实现功能。
 ## GameBody对象的使用流程：
 	1. 首先声明一个GameBody或者你自己继承的类的对象。
-	2. 接下来你需要这样的代码：
-```cpp
-while(gamebody.isQuit()==false)
-		gamebody.step();
+	2. 使用RUN\_APP()宏来让你的类运行起来。
 
-```
 	就可以完成游戏的流程。
 
 更新：
@@ -23,4 +19,6 @@ while(gamebody.isQuit()==false)
 \#define \_XCODE\_PROJECT\_
 \#endif
 
+**2019.2.16**
+	将main函数封装在RUN_APP()宏里面，方便整体结构，不需要写main函数，也不需要记住类的成员函数的调用顺序了。
 

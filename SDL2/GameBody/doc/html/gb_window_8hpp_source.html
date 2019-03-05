@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GameBody: gbWindow.hpp 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">GameBody
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Some tools to develop a game quickly,encapsulated by SDL2</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.15 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">gbWindow.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="gb_window_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __GBWINDOW_HPP__</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __GBWINDOW_HPP__</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL.h&gt;</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="header_8hpp.html">header.hpp</a>&quot;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classgb_window.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classgb_window.html">gbWindow</a>{</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="classgb_window.html#a08e5afeb1a8c049610b57be380b6403a">gbWindow</a>(SDL_Window*);</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classgb_window.html#a08e5afeb1a8c049610b57be380b6403a">gbWindow</a>(<span class="keywordtype">string</span> title,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height,Uint8 type);</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    SDL_Window* <a class="code" href="classgb_window.html#a3c898bc79a1a4d09fbdf138ccb25fb88">get</a>();</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    gbSize <a class="code" href="classgb_window.html#a0a5f9d324a9d81167d9e7b1721587ec4">getSize</a>();</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classgb_window.html#abda1af6601c41ace2731cfeff9312927">isFocus</a>();</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">string</span> <a class="code" href="classgb_window.html#a470388bdcea1c7ed3ee77ddb9ecb5a46">getTitle</a>();</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classgb_point.html">gbPoint</a> <a class="code" href="classgb_window.html#a694817c835e86e52cb18c5d70726ca1c">getPosition</a>();</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classgb_window.html#a285d24584544d223e18078a60882109c">getBrightness</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classgb_window.html#a783ba0e2f72c27f844105909d54b5f5f">getOpacity</a>();</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    Uint8 <a class="code" href="classgb_window.html#a9da9e2d896d38dd055e6224e168294b6">getFlag</a>();</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgb_window.html#ab7a05f81b0191dbccafc897287d1b759">setTitle</a>(<span class="keywordtype">string</span>);</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgb_window.html#a4a89c22270c639142295477ab37e838f">setOpacity</a>(<span class="keywordtype">float</span>);</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classgb_window.html#ad05c721b3e04f23f0e6b72e4c411be1c">setBrightness</a>(<span class="keywordtype">float</span>);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classgb_window.html#acd0d49bdf1dbe7df86e02ba82a318571">~gbWindow</a>();</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    SDL_Window* window;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="classgb_window_html_a285d24584544d223e18078a60882109c"><div class="ttname"><a href="classgb_window.html#a285d24584544d223e18078a60882109c">gbWindow::getBrightness</a></div><div class="ttdeci">float getBrightness()</div></div>
+<div class="ttc" id="classgb_window_html_a3c898bc79a1a4d09fbdf138ccb25fb88"><div class="ttname"><a href="classgb_window.html#a3c898bc79a1a4d09fbdf138ccb25fb88">gbWindow::get</a></div><div class="ttdeci">SDL_Window * get()</div></div>
+<div class="ttc" id="classgb_window_html_abda1af6601c41ace2731cfeff9312927"><div class="ttname"><a href="classgb_window.html#abda1af6601c41ace2731cfeff9312927">gbWindow::isFocus</a></div><div class="ttdeci">bool isFocus()</div></div>
+<div class="ttc" id="classgb_window_html"><div class="ttname"><a href="classgb_window.html">gbWindow</a></div><div class="ttdoc">封装SDL_Window的类</div><div class="ttdef"><b>Definition:</b> gbWindow.hpp:12</div></div>
+<div class="ttc" id="classgb_window_html_a0a5f9d324a9d81167d9e7b1721587ec4"><div class="ttname"><a href="classgb_window.html#a0a5f9d324a9d81167d9e7b1721587ec4">gbWindow::getSize</a></div><div class="ttdeci">gbSize getSize()</div></div>
+<div class="ttc" id="header_8hpp_html"><div class="ttname"><a href="header_8hpp.html">header.hpp</a></div><div class="ttdoc">包含一些全局的变量</div></div>
+<div class="ttc" id="classgb_window_html_a470388bdcea1c7ed3ee77ddb9ecb5a46"><div class="ttname"><a href="classgb_window.html#a470388bdcea1c7ed3ee77ddb9ecb5a46">gbWindow::getTitle</a></div><div class="ttdeci">const string getTitle()</div></div>
+<div class="ttc" id="classgb_point_html"><div class="ttname"><a href="classgb_point.html">gbPoint</a></div><div class="ttdef"><b>Definition:</b> geomentry.hpp:19</div></div>
+<div class="ttc" id="classgb_window_html_a08e5afeb1a8c049610b57be380b6403a"><div class="ttname"><a href="classgb_window.html#a08e5afeb1a8c049610b57be380b6403a">gbWindow::gbWindow</a></div><div class="ttdeci">gbWindow(SDL_Window *)</div><div class="ttdef"><b>Definition:</b> gbWindow.cpp:5</div></div>
+<div class="ttc" id="classgb_window_html_a694817c835e86e52cb18c5d70726ca1c"><div class="ttname"><a href="classgb_window.html#a694817c835e86e52cb18c5d70726ca1c">gbWindow::getPosition</a></div><div class="ttdeci">gbPoint getPosition()</div></div>
+<div class="ttc" id="classgb_window_html_ad05c721b3e04f23f0e6b72e4c411be1c"><div class="ttname"><a href="classgb_window.html#ad05c721b3e04f23f0e6b72e4c411be1c">gbWindow::setBrightness</a></div><div class="ttdeci">void setBrightness(float)</div></div>
+<div class="ttc" id="classgb_window_html_ab7a05f81b0191dbccafc897287d1b759"><div class="ttname"><a href="classgb_window.html#ab7a05f81b0191dbccafc897287d1b759">gbWindow::setTitle</a></div><div class="ttdeci">void setTitle(string)</div></div>
+<div class="ttc" id="classgb_window_html_a9da9e2d896d38dd055e6224e168294b6"><div class="ttname"><a href="classgb_window.html#a9da9e2d896d38dd055e6224e168294b6">gbWindow::getFlag</a></div><div class="ttdeci">Uint8 getFlag()</div></div>
+<div class="ttc" id="classgb_window_html_a783ba0e2f72c27f844105909d54b5f5f"><div class="ttname"><a href="classgb_window.html#a783ba0e2f72c27f844105909d54b5f5f">gbWindow::getOpacity</a></div><div class="ttdeci">float getOpacity()</div></div>
+<div class="ttc" id="classgb_window_html_acd0d49bdf1dbe7df86e02ba82a318571"><div class="ttname"><a href="classgb_window.html#acd0d49bdf1dbe7df86e02ba82a318571">gbWindow::~gbWindow</a></div><div class="ttdeci">~gbWindow()</div><div class="ttdef"><b>Definition:</b> gbWindow.cpp:21</div></div>
+<div class="ttc" id="classgb_window_html_a4a89c22270c639142295477ab37e838f"><div class="ttname"><a href="classgb_window.html#a4a89c22270c639142295477ab37e838f">gbWindow::setOpacity</a></div><div class="ttdeci">void setOpacity(float)</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
+</body>
+</html>

@@ -1,45 +1,55 @@
 /**
- * 这个头文件是用来简化SDL2游戏开发的
- *
  * @file GameBody.hpp
  * @author VisualGMQ
- * @date Fri Feb 8 2019
  * @brief 包含一个类
+ *
+ * 这个头文件是用来简化SDL2游戏开发的
  */
 #ifndef _GAMEBODY_HPP_
 #define _GAMEBODY_HPP_
 
-#ifndef _XCODE_PROJECT_
-#define _XCODE_PROJECT_
-#endif
-
 #include <iostream>
 #include <string>
 #include <SDL2/SDL.h>
-#ifdef _XCODE_PROJECT_
+#ifdef _XCODE_PROJECT_ 		//如果是XCODE工程，这个头文件是不一样的
 #include <SDL2_image/SDL_image.h>
 #else
 #include <SDL2/SDL_image.h>
 #endif
+
+/**@def RUN_APP(classname)
+ * @brief 运行classname类
+ * @param classname 要运行的类
+ *
+ * 这个宏简化了main函数，直接给出classname就可以运行了。
+ */
+#define RUN_APP(classname) \
+	int main(int argc,char** argv){\
+		classname gamebodyrunapp123;\
+		while(!gamebodyrunapp123.isQuit())\
+			gamebodyrunapp123.step();\
+		return 0;\
+	}
+
 using namespace std;
 
 /**
- * \class GameBody
- * \brief 这个类封装了很多的SDL方法，方便你去快速构建一个应用
+ * @class GameBody
+ * @brief 这个类封装了很多的SDL方法，方便你去快速构建一个应用
+ * @warning 你的子类的构造函数不可以有参数，而且必须只有一个无参构造函数。
  *
  * 这个类的用法是这样：
- * 如果你对窗体的要求不是很高的话，可以只重写update()函数来添加你自己的功能。如果需要对事件处理进行改动的话你需要重写eventHandle()函数。你也可以重写clean()函数来清空资源。所有的虚函数都是可以重写的
+ * 如果你对窗体的要求不是很高的话，可以只重写update()函数来添加你自己的功能。如果需要对事件处理进行改动的话你需要重写eventHandle()函数。你也可以重写clean()函数来清空资源。所有的虚函数都是可以重写的，但是我们不建议你写我们没有显式说明可以重写的函数
  * 基本的流程是这样：
  * ```
  * class myClass:public GameBody{
- *	//TODO....
+ * 	myClass():GameBody(yourtitle,yourwidth,yourheight,yourflag,yourmillisec){
+ * 		//TODO Initialize....
+ * 	}
+ *	//TODO Other Override....
  * };
  *	
- * int main(int argc,char** argv){
- *	myClass mc;
- *	while(!mc.isQuit())
- *		mc.step();
- *	return 0;
+ * RUN_APP(myClass);
  * }
  * ```
  */
@@ -93,7 +103,6 @@ public:
 	 */
 	virtual ~GameBody();
 private:
-	static bool isSDL_Init;
 	SDL_Window* win; 
 	SDL_Renderer* render;
 	SDL_Event event;
