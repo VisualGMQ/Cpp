@@ -8,8 +8,10 @@
 #ifndef _GAMEBODY_HPP_
 #define _GAMEBODY_HPP_
 
-#include <iostream>
 #include <string>
+#include "gbWindow.hpp"
+#include "geomentry.hpp"
+#include "header.hpp"
 #include <SDL2/SDL.h>
 #ifdef _XCODE_PROJECT_ 		//如果是XCODE工程，这个头文件是不一样的
 #include <SDL2_image/SDL_image.h>
@@ -103,7 +105,7 @@ public:
 	 */
 	virtual ~GameBody();
 private:
-	SDL_Window* win; 
+	gbWindow win;
 	SDL_Renderer* render;
 	SDL_Event event;
 	bool error;

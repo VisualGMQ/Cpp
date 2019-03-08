@@ -3,7 +3,7 @@
  * @brief 包含一些全局的变量
  * @author VisualGMQ
  * 
- * 这个头文件里面包含了很多全局的变量，用于各个头文件调用
+ * 这个头文件里面包含了很多全局的变量和一些简化编码的函数，用于各个头文件调用
  */
 #ifndef __HEADER_HPP__
 #define __HEADER_HPP__
@@ -52,7 +52,17 @@ void set##funcname(settype param){\
 GB_CREATE_GETFUNC(vartype,funcname,varname)\
 GB_CREATE_SETFUNC(vartype,funcname,varname)
 
+/** @def GB_GET_BASIC_SOURCE(returntype,sourcename)
+ *  @brief 在类里面创造一个获得最底层资源的函数get()
+ *  @param sourcetype 返回的类型
+ *  @param sourcename 返回变量的名称
+ */
+#define GB_GET_BASIC_SOURCE(returntype,sourcename) \
+returntype get(){\
+	return sourcename;\
+}
 
-SDL_Renderer* globaleRenderer = nullptr;
-bool isSDL_Init = false;
+
+static SDL_Renderer* globaleRenderer = nullptr;
+static bool isSDL_Init = false;
 #endif
