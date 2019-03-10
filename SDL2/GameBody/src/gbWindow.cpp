@@ -2,10 +2,17 @@
 #include <cstdlib>
 using namespace std;
 
-gbWindow::gbWindow(SDL_Window* window){
+gbWindow::gbWindow(SDL_Window* window,SDL_Renderer* render){
 	if(window == nullptr)
 		abort();
 	this->window = window;
+	if(render == nullptr)
+		abort();
+	this->render = render;
+	gbSize size = getSize();
+	canva = SDL_CreateTexture(render,SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, size.getWidth(),size.getHeight());
+	if(canva == nullptr)
+		abort();
 }
 
 gbWindow::gbWindow(const string title,int width,int height,Uint32 flag,string iconpath){
@@ -14,6 +21,13 @@ gbWindow::gbWindow(const string title,int width,int height,Uint32 flag,string ic
 	if(window == nullptr)
 		abort();
 	loadIcon(iconpath);
+	render = SDL_CreateRenderer(window,-1,0);
+	if(render == nullptr)
+		abort();
+	gbSize size = getSize();
+	canva = SDL_CreateTexture(render,SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, size.getWidth(),size.getHeight());
+	if(canva == nullptr)
+		abort();
 }
 
 bool gbWindow::loadIcon(string path){
@@ -97,4 +111,12 @@ gbWindow::~gbWindow(){
         SDL_DestroyWindow(window);
         window = nullptr;
     }
+	if(render != nullptr){
+		SDL_DestroyRenderer(render);
+		render = nullptr;
+	}
+	if(canva != nullptr){
+		SDL_DestroyTexture(canva);
+		canva = nullptr;
+	}
 }

@@ -61,7 +61,4 @@ GB_CREATE_SETFUNC(vartype,funcname,varname)
 returntype get(){\
 	return sourcename;\
 }
-
-
-static SDL_Renderer* globaleRenderer = nullptr;
 #endif

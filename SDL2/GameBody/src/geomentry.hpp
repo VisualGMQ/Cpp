@@ -17,6 +17,7 @@
 class gbRect{
 public:
 	gbRect(int x,int y,int w,int h);
+	gbRect(SDL_Rect rect);
 	bool operator==(gbRect) const;
 	bool operator!=(gbRect) const;
 	GB_GET_BASIC_SOURCE(SDL_Rect&,rect)
@@ -35,6 +36,7 @@ private:
 class gbPoint{
 public:
 	gbPoint(int x,int y);
+	gbPoint(SDL_Point p);
 	bool operator==(gbPoint) const;
 	bool operator!=(gbPoint) const;
 	GB_GET_BASIC_SOURCE(SDL_Point&,point)
@@ -64,7 +66,9 @@ private:
 
 class gbColor{
 public:
-	gbColor(int,int,int);
+	gbColor();
+	gbColor(SDL_Color color);
+	gbColor(int r,int g,int b,int a = 255);
 	GB_CREATE_GETSETFUNC(Uint8,R,color.r)
 	GB_CREATE_GETSETFUNC(Uint8,G,color.g)
 	GB_CREATE_GETSETFUNC(Uint8,B,color.b)

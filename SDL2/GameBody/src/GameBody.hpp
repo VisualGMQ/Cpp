@@ -11,16 +11,14 @@
 //include gb files
 #include "gbWindow.hpp"
 #include "geomentry.hpp"
+#include "gbDrawTool.hpp"
 #include "header.hpp"
 //#include "gbInput.hpp"
 
 #include <string>
 #include <SDL2/SDL.h>
-#ifdef _XCODE_PROJECT_ 		//如果是XCODE工程，这个头文件是不一样的
-#include <SDL2_image/SDL_image.h>
-#else
+#include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
-#endif
 
 /**@def RUN_APP(classname)
  * @brief 运行classname类
@@ -35,14 +33,13 @@
 			return -1;\
 		}\
 		if(TTF_Init() < 0){\
-			SDL_Log("TTF can;t init");\
+			SDL_Log("TTF can't init");\
 			return -1;\
 		}\
 		if(IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG) < 0){\
 			SDL_Log("IMG can't init");\
 			return -1;\
 		}\
-		gbInput::Init();\
 		classname gamebodyrunapp123;\
 		while(!gamebodyrunapp123.isQuit())\
 			gamebodyrunapp123.step();\

@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdlib>
 #include "header.hpp"
+#include "geomentry.hpp"
 using namespace std;
 
 class gbDrawTool{
@@ -11,7 +12,7 @@ public:
 	gbDrawTool() = delete;
 	gbDrawTool(SDL_Renderer*);
 	void drawText(SDL_Texture*,string text,int x,int y,int ptsize,gbColor);
-	void drawText(SDL_Texture*,string text,gbPoint point,ptsize,gbColor);
+	void drawText(SDL_Texture*,string text,gbPoint point,int ptsize,gbColor);
 	void drawLine(SDL_Texture*,int x1,int x2,int y1,int y2,gbColor);
 	void drawLine(SDL_Texture*,gbPoint p1,gbPoint p2,gbColor);
 	void drawCircle(SDL_Texture*,int centerx,int centery,int radius,gbColor);
@@ -25,7 +26,7 @@ public:
 	void drawSolidRect(SDL_Texture*,int x,int y,int w,int h,gbColor outline,gbColor fillColor);
 private:
 	gbColor startDraw(SDL_Texture* dst,gbColor color);
-	void endDraw();
+	void endDraw(gbColor);
 	SDL_Renderer* render;
 };
 #endif

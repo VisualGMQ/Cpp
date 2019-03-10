@@ -29,10 +29,11 @@ public:
 		WINDOW_FULLSCREEN,
 	};
 	/** @fn gbWindow(SDL_Window*)
-	 *  @brief 给入一个已经有的SDL_Window*。
+	 *  @brief 通过已有资源创建一个gbWindow。
 	 *  @param window SDL_Window*参数
+	 *  @param render SDL_Renderer*参数
 	 */
-	gbWindow(SDL_Window*);
+	gbWindow(SDL_Window*,SDL_Renderer* render);
 	/** @fn gbWindow(const string title,int width,int height,Uint32 type,string iconpath = "")
 	 *  @brief 给入必要的参数来构建一个窗口
 	 *  @param title 窗口标题
@@ -99,6 +100,11 @@ public:
 	 *  @brief 获得SDL_Window*
 	 */
 	GB_GET_BASIC_SOURCE(SDL_Window*,window);
+	/** @fn getRender()
+	 *  @param 获得这个window的render
+	 */
+	GB_CREATE_GETFUNC(SDL_Renderer*,Render,render);
+	GB_CREATE_GETFUNC(SDL_Texture*,Canva,canva);
 	~gbWindow();
 protected:
 	/** @fn loadIcon(string path)
@@ -107,6 +113,8 @@ protected:
 	 */
 	bool loadIcon(string path);
 	Uint32 WindowMode;
+	SDL_Texture* canva;
+	SDL_Renderer* render;
 	SDL_Surface* icon;
 	SDL_Window* window;
 };

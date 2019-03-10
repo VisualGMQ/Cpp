@@ -3,11 +3,7 @@ using namespace std;
 
 GameBody::GameBody(const string title,int width,int height,Uint32 flag,int delaytime):error(false),gamequit(false),delaytime(delaytime),render(nullptr){
     win = new gbWindow(title,width,height,flag);
-    this->render = SDL_CreateRenderer(win->get(),-1,0);
-    if(this->render == nullptr)
-		error=true;
-	else
-		globaleRenderer = render;
+	render = win->getRender();
 }
 
 void GameBody::eventHandle(){
@@ -20,11 +16,14 @@ void GameBody::eventHandle(){
 }
 
 void GameBody::renderBegin(){
+	SDL_SetRenderTarget(render,win->getCanva());
 	SDL_SetRenderDrawColor(render,255,255,255,255);
 	SDL_RenderClear(render);	
 }
 
 void GameBody::renderEnd(){
+	SDL_SetRenderTarget(render,nullptr);
+	SDL_RenderCopy(render,win->getCanva(),nullptr,nullptr);
 	SDL_RenderPresent(render);
 }
 
@@ -35,7 +34,6 @@ void GameBody::delay(int millisec){
 void GameBody::step(){
 	renderBegin();
 	eventHandle();
-	gbInput::step();
 	update();
 	renderEnd();
 	delay(delaytime);
@@ -43,10 +41,8 @@ void GameBody::step(){
 
 GameBody::~GameBody(){
 	clean();
-	SDL_DestroyRenderer(render);
     if(win != nullptr)
         delete win;
     win = nullptr;
     render = nullptr;
-	globaleRenderer = nullptr;
 }
