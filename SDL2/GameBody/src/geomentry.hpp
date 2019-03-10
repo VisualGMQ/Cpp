@@ -56,9 +56,20 @@ public:
 	bool operator==(gbSize) const;
 	bool operator!=(gbSize) const;
 	GB_GET_BASIC_SOURCE(SDL_Point&,size)
-	GB_CREATE_GETSETFUNC(int,Width,size.x);
-	GB_CREATE_GETSETFUNC(int,Height,size.y);
+	GB_CREATE_GETSETFUNC(int,Width,size.x)
+	GB_CREATE_GETSETFUNC(int,Height,size.y)
 private:
 	SDL_Point size;
+};
+
+class gbColor{
+public:
+	gbColor(int,int,int);
+	GB_CREATE_GETSETFUNC(Uint8,R,color.r)
+	GB_CREATE_GETSETFUNC(Uint8,G,color.g)
+	GB_CREATE_GETSETFUNC(Uint8,B,color.b)
+	GB_CREATE_GETSETFUNC(Uint8,A,color.a)
+private:
+	SDL_Color color;
 };
 #endif

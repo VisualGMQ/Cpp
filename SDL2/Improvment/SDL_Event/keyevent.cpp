@@ -25,5 +25,6 @@ int main(int argc,char** argv){
 				SDL_Log("you released %d,and the key repeated %d times",event.key.keysym.scancode,event.key.repeat);
 
 		}
+	SDL_Delay(30);
 	}
 }

@@ -64,5 +64,4 @@ returntype get(){\
 
 
 static SDL_Renderer* globaleRenderer = nullptr;
-static bool isSDL_Init = false;
 #endif

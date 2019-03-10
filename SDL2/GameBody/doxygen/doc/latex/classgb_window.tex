@@ -1,0 +1,332 @@
+\hypertarget{classgb_window}{}\section{gb\+Window类 参考}
+\label{classgb_window}\index{gbWindow@{gbWindow}}
+
+
+封装\+S\+D\+L\+\_\+\+Window的类  
+
+
+
+
+{\ttfamily \#include $<$gb\+Window.\+hpp$>$}
+
+\subsection*{Public 类型}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9}{M\+O\+DE}} \{ \mbox{\hyperlink{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9a5740824054b0e553087697d3bd125fe8}{W\+I\+N\+D\+O\+W\+\_\+\+B\+O\+R\+D\+E\+R\+ED}}, 
+\mbox{\hyperlink{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9abd206e493c11e82b172da8577883cc82}{W\+I\+N\+D\+O\+W\+\_\+\+R\+E\+S\+I\+Z\+A\+B\+LE}}, 
+\mbox{\hyperlink{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9a0d12505e22d971c669ff572a2e618f55}{W\+I\+N\+D\+O\+W\+\_\+\+F\+U\+L\+L\+S\+C\+R\+E\+EN}}
+ \}
+\begin{DoxyCompactList}\small\item\em 记载一些flag，用于set\+Mode函数和get\+Mode()函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgb_window_a08e5afeb1a8c049610b57be380b6403a}{gb\+Window}} (S\+D\+L\+\_\+\+Window $\ast$)
+\begin{DoxyCompactList}\small\item\em 给入一个已经有的\+S\+D\+L\+\_\+\+Window$\ast$。 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgb_window_a47e8d87e8905b3e7a126d3b1f3bfe66d}{gb\+Window}} (const string title, int width, int height, Uint32 type, string iconpath=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em 给入必要的参数来构建一个窗口 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgb_size}{gb\+Size}} \mbox{\hyperlink{classgb_window_af329e62282ec4ed7184eb8c58d7f7809}{get\+Size}} ()
+\begin{DoxyCompactList}\small\item\em 返回窗体大小 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgb_window_a2e2392232e1ddb4ee301dc8069ab6230}{is\+Focus}} ()
+\begin{DoxyCompactList}\small\item\em 判断是否有焦点 \end{DoxyCompactList}\item 
+const string \mbox{\hyperlink{classgb_window_a42dac83ea2862f0e5277eaf1df4bf740}{get\+Title}} ()
+\begin{DoxyCompactList}\small\item\em 获得标题 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgb_point}{gb\+Point}} \mbox{\hyperlink{classgb_window_acf7f12b75b0b9b3f25105569f77e8f80}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em 返回窗体位置 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classgb_window_aa5a6dbbedb1b0421c5ce41753df71ba3}{get\+Brightness}} ()
+\begin{DoxyCompactList}\small\item\em 返回窗体亮度 \end{DoxyCompactList}\item 
+Uint32 \mbox{\hyperlink{classgb_window_af86a84effc2ab72df5dfa881c5e6d620}{get\+Mode}} ()
+\begin{DoxyCompactList}\small\item\em 获得当时传入的flag \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgb_window_a17f154d7c86e29d7337fe46cc183c5dc}{set\+Title}} (string)
+\begin{DoxyCompactList}\small\item\em 设置标题 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgb_window_aec17f885a0d2dcf1a6d281799542071a}{set\+Brightness}} (float)
+\begin{DoxyCompactList}\small\item\em 设置窗体亮度 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgb_window_a1a4802fa6b726f60f6dd61c7de2f8d73}{set\+Icon}} (string path)
+\begin{DoxyCompactList}\small\item\em 设置窗口icon \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgb_window_abf2068b28248fb4f9ed5d39a5df58d0a}{set\+Mode}} (\mbox{\hyperlink{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9}{M\+O\+DE}}, bool)
+\begin{DoxyCompactList}\small\item\em 设置窗体的模式 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgb_window_a7a24cdcd80201982dca8944b073a76f9}{G\+B\+\_\+\+G\+E\+T\+\_\+\+B\+A\+S\+I\+C\+\_\+\+S\+O\+U\+R\+CE}} (S\+D\+L\+\_\+\+Window $\ast$, \mbox{\hyperlink{classgb_window_a1faf26696f9974e05cae77fb240a502e}{window}})
+\item 
+\mbox{\hyperlink{classgb_window_acd0d49bdf1dbe7df86e02ba82a318571}{$\sim$gb\+Window}} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classgb_window_a7afc7ded286b296fa5f2a324cbd065ff}{load\+Icon}} (string path)
+\begin{DoxyCompactList}\small\item\em 载入icon的函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+Uint32 \mbox{\hyperlink{classgb_window_a60b7748425bf49fdf563c870a13c6e07}{Window\+Mode}}
+\item 
+S\+D\+L\+\_\+\+Surface $\ast$ \mbox{\hyperlink{classgb_window_ad6ff49981281025fd5b027277d693e24}{icon}}
+\item 
+S\+D\+L\+\_\+\+Window $\ast$ \mbox{\hyperlink{classgb_window_a1faf26696f9974e05cae77fb240a502e}{window}}
+\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+封装\+S\+D\+L\+\_\+\+Window的类 
+
+这个类封装了\+S\+D\+L\+\_\+\+Window 
+
+\subsection{成员枚举类型说明}
+\mbox{\Hypertarget{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9}\label{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9}} 
+\index{gbWindow@{gbWindow}!MODE@{MODE}}
+\index{MODE@{MODE}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{MODE}{MODE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9}{gb\+Window\+::\+M\+O\+DE}}}
+
+
+
+记载一些flag，用于set\+Mode函数和get\+Mode()函数 
+
+\begin{DoxyEnumFields}{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WINDOW\_BORDERED@{WINDOW\_BORDERED}!gbWindow@{gbWindow}}\index{gbWindow@{gbWindow}!WINDOW\_BORDERED@{WINDOW\_BORDERED}}}\mbox{\Hypertarget{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9a5740824054b0e553087697d3bd125fe8}\label{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9a5740824054b0e553087697d3bd125fe8}} 
+W\+I\+N\+D\+O\+W\+\_\+\+B\+O\+R\+D\+E\+R\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WINDOW\_RESIZABLE@{WINDOW\_RESIZABLE}!gbWindow@{gbWindow}}\index{gbWindow@{gbWindow}!WINDOW\_RESIZABLE@{WINDOW\_RESIZABLE}}}\mbox{\Hypertarget{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9abd206e493c11e82b172da8577883cc82}\label{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9abd206e493c11e82b172da8577883cc82}} 
+W\+I\+N\+D\+O\+W\+\_\+\+R\+E\+S\+I\+Z\+A\+B\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WINDOW\_FULLSCREEN@{WINDOW\_FULLSCREEN}!gbWindow@{gbWindow}}\index{gbWindow@{gbWindow}!WINDOW\_FULLSCREEN@{WINDOW\_FULLSCREEN}}}\mbox{\Hypertarget{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9a0d12505e22d971c669ff572a2e618f55}\label{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9a0d12505e22d971c669ff572a2e618f55}} 
+W\+I\+N\+D\+O\+W\+\_\+\+F\+U\+L\+L\+S\+C\+R\+E\+EN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{构造及析构函数说明}
+\mbox{\Hypertarget{classgb_window_a08e5afeb1a8c049610b57be380b6403a}\label{classgb_window_a08e5afeb1a8c049610b57be380b6403a}} 
+\index{gbWindow@{gbWindow}!gbWindow@{gbWindow}}
+\index{gbWindow@{gbWindow}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{gbWindow()}{gbWindow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily gb\+Window\+::gb\+Window (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Window $\ast$}]{window }\end{DoxyParamCaption})}
+
+
+
+给入一个已经有的\+S\+D\+L\+\_\+\+Window$\ast$。 
+
+
+\begin{DoxyParams}{参数}
+{\em window} & S\+D\+L\+\_\+\+Window$\ast$参数 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgb_window_a47e8d87e8905b3e7a126d3b1f3bfe66d}\label{classgb_window_a47e8d87e8905b3e7a126d3b1f3bfe66d}} 
+\index{gbWindow@{gbWindow}!gbWindow@{gbWindow}}
+\index{gbWindow@{gbWindow}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{gbWindow()}{gbWindow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily gb\+Window\+::gb\+Window (\begin{DoxyParamCaption}\item[{const string}]{title,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{Uint32}]{type,  }\item[{string}]{iconpath = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+给入必要的参数来构建一个窗口 
+
+
+\begin{DoxyParams}{参数}
+{\em title} & 窗口标题 \\
+\hline
+{\em width} & 窗口高度 \\
+\hline
+{\em height} & 窗口宽度 \\
+\hline
+{\em type} & S\+D\+L2自带的窗体类型，比如\+S\+D\+L\+\_\+\+W\+I\+N\+D\+O\+W\+\_\+\+S\+H\+O\+WN \\
+\hline
+{\em iconpath} & 窗口icon图标的路径。默认为空表示没有图标 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgb_window_acd0d49bdf1dbe7df86e02ba82a318571}\label{classgb_window_acd0d49bdf1dbe7df86e02ba82a318571}} 
+\index{gbWindow@{gbWindow}!````~gbWindow@{$\sim$gbWindow}}
+\index{````~gbWindow@{$\sim$gbWindow}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{$\sim$gbWindow()}{~gbWindow()}}
+{\footnotesize\ttfamily gb\+Window\+::$\sim$gb\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{成员函数说明}
+\mbox{\Hypertarget{classgb_window_a7a24cdcd80201982dca8944b073a76f9}\label{classgb_window_a7a24cdcd80201982dca8944b073a76f9}} 
+\index{gbWindow@{gbWindow}!GB\_GET\_BASIC\_SOURCE@{GB\_GET\_BASIC\_SOURCE}}
+\index{GB\_GET\_BASIC\_SOURCE@{GB\_GET\_BASIC\_SOURCE}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{GB\_GET\_BASIC\_SOURCE()}{GB\_GET\_BASIC\_SOURCE()}}
+{\footnotesize\ttfamily gb\+Window\+::\+G\+B\+\_\+\+G\+E\+T\+\_\+\+B\+A\+S\+I\+C\+\_\+\+S\+O\+U\+R\+CE (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Window $\ast$}]{,  }\item[{\mbox{\hyperlink{classgb_window_a1faf26696f9974e05cae77fb240a502e}{window}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classgb_window_aa5a6dbbedb1b0421c5ce41753df71ba3}\label{classgb_window_aa5a6dbbedb1b0421c5ce41753df71ba3}} 
+\index{gbWindow@{gbWindow}!getBrightness@{getBrightness}}
+\index{getBrightness@{getBrightness}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{getBrightness()}{getBrightness()}}
+{\footnotesize\ttfamily gb\+Window\+::get\+Brightness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+返回窗体亮度 
+
+\begin{DoxySeeAlso}{参见}
+\mbox{\hyperlink{classgb_window_aec17f885a0d2dcf1a6d281799542071a}{set\+Brightness()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classgb_window_af86a84effc2ab72df5dfa881c5e6d620}\label{classgb_window_af86a84effc2ab72df5dfa881c5e6d620}} 
+\index{gbWindow@{gbWindow}!getMode@{getMode}}
+\index{getMode@{getMode}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{getMode()}{getMode()}}
+{\footnotesize\ttfamily gb\+Window\+::get\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+获得当时传入的flag 
+
+\begin{DoxySeeAlso}{参见}
+\mbox{\hyperlink{classgb_window_abf2068b28248fb4f9ed5d39a5df58d0a}{set\+Mode()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classgb_window_acf7f12b75b0b9b3f25105569f77e8f80}\label{classgb_window_acf7f12b75b0b9b3f25105569f77e8f80}} 
+\index{gbWindow@{gbWindow}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily gb\+Window\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+返回窗体位置 
+
+\begin{DoxySeeAlso}{参见}
+set\+Position() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classgb_window_af329e62282ec4ed7184eb8c58d7f7809}\label{classgb_window_af329e62282ec4ed7184eb8c58d7f7809}} 
+\index{gbWindow@{gbWindow}!getSize@{getSize}}
+\index{getSize@{getSize}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily gb\+Window\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+返回窗体大小 
+
+\begin{DoxyReturn}{返回}
+返回gb\+Size 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgb_window_a42dac83ea2862f0e5277eaf1df4bf740}\label{classgb_window_a42dac83ea2862f0e5277eaf1df4bf740}} 
+\index{gbWindow@{gbWindow}!getTitle@{getTitle}}
+\index{getTitle@{getTitle}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{getTitle()}{getTitle()}}
+{\footnotesize\ttfamily gb\+Window\+::get\+Title (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+获得标题 
+
+\begin{DoxySeeAlso}{参见}
+\mbox{\hyperlink{classgb_window_a17f154d7c86e29d7337fe46cc183c5dc}{set\+Title()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classgb_window_a2e2392232e1ddb4ee301dc8069ab6230}\label{classgb_window_a2e2392232e1ddb4ee301dc8069ab6230}} 
+\index{gbWindow@{gbWindow}!isFocus@{isFocus}}
+\index{isFocus@{isFocus}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{isFocus()}{isFocus()}}
+{\footnotesize\ttfamily gb\+Window\+::is\+Focus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+判断是否有焦点 
+
+\begin{DoxyReturn}{返回}
+如果有焦点返回true 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgb_window_a7afc7ded286b296fa5f2a324cbd065ff}\label{classgb_window_a7afc7ded286b296fa5f2a324cbd065ff}} 
+\index{gbWindow@{gbWindow}!loadIcon@{loadIcon}}
+\index{loadIcon@{loadIcon}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{loadIcon()}{loadIcon()}}
+{\footnotesize\ttfamily gb\+Window\+::load\+Icon (\begin{DoxyParamCaption}\item[{string}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+载入icon的函数 
+
+
+\begin{DoxyParams}{参数}
+{\em path} & icon图标的位置 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgb_window_aec17f885a0d2dcf1a6d281799542071a}\label{classgb_window_aec17f885a0d2dcf1a6d281799542071a}} 
+\index{gbWindow@{gbWindow}!setBrightness@{setBrightness}}
+\index{setBrightness@{setBrightness}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{setBrightness()}{setBrightness()}}
+{\footnotesize\ttfamily gb\+Window\+::set\+Brightness (\begin{DoxyParamCaption}\item[{float}]{b }\end{DoxyParamCaption})}
+
+
+
+设置窗体亮度 
+
+\mbox{\Hypertarget{classgb_window_a1a4802fa6b726f60f6dd61c7de2f8d73}\label{classgb_window_a1a4802fa6b726f60f6dd61c7de2f8d73}} 
+\index{gbWindow@{gbWindow}!setIcon@{setIcon}}
+\index{setIcon@{setIcon}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{setIcon()}{setIcon()}}
+{\footnotesize\ttfamily gb\+Window\+::set\+Icon (\begin{DoxyParamCaption}\item[{string}]{path }\end{DoxyParamCaption})}
+
+
+
+设置窗口icon 
+
+
+\begin{DoxyParams}{参数}
+{\em path} & icon路径 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgb_window_abf2068b28248fb4f9ed5d39a5df58d0a}\label{classgb_window_abf2068b28248fb4f9ed5d39a5df58d0a}} 
+\index{gbWindow@{gbWindow}!setMode@{setMode}}
+\index{setMode@{setMode}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{setMode()}{setMode()}}
+{\footnotesize\ttfamily gb\+Window\+::set\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9}{M\+O\+DE}}}]{mode,  }\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+设置窗体的模式 
+
+
+\begin{DoxyParams}{参数}
+{\em mode} & 必须是\+M\+O\+D\+E枚举类型，窗体的模式 \\
+\hline
+{\em bool} & 设置传入的mode是否可用 \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{参见}
+\mbox{\hyperlink{classgb_window_a19e70d277e17598ddb3c229e28dbb9e9}{M\+O\+DE}}
+\end{DoxySeeAlso}
+mode参数不能够传入任意的\+S\+D\+L\+\_\+\+W\+I\+N\+D\+O\+W\+\_\+$\ast$，而是只能够在\+M\+O\+D\+E枚举里面选择。这个函数内部其实调用了\+S\+D\+L\+\_\+\+Set\+Window\+Resizable()和\+S\+D\+L\+\_\+\+Set\+Window\+\_\+\+Full\+Screen()等函数。 \mbox{\Hypertarget{classgb_window_a17f154d7c86e29d7337fe46cc183c5dc}\label{classgb_window_a17f154d7c86e29d7337fe46cc183c5dc}} 
+\index{gbWindow@{gbWindow}!setTitle@{setTitle}}
+\index{setTitle@{setTitle}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{setTitle()}{setTitle()}}
+{\footnotesize\ttfamily gb\+Window\+::set\+Title (\begin{DoxyParamCaption}\item[{string}]{title }\end{DoxyParamCaption})}
+
+
+
+设置标题 
+
+
+\begin{DoxyParams}{参数}
+{\em title} & 标题 \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{类成员变量说明}
+\mbox{\Hypertarget{classgb_window_ad6ff49981281025fd5b027277d693e24}\label{classgb_window_ad6ff49981281025fd5b027277d693e24}} 
+\index{gbWindow@{gbWindow}!icon@{icon}}
+\index{icon@{icon}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{icon}{icon}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+Surface$\ast$ gb\+Window\+::icon\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classgb_window_a1faf26696f9974e05cae77fb240a502e}\label{classgb_window_a1faf26696f9974e05cae77fb240a502e}} 
+\index{gbWindow@{gbWindow}!window@{window}}
+\index{window@{window}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+Window$\ast$ gb\+Window\+::window\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classgb_window_a60b7748425bf49fdf563c870a13c6e07}\label{classgb_window_a60b7748425bf49fdf563c870a13c6e07}} 
+\index{gbWindow@{gbWindow}!WindowMode@{WindowMode}}
+\index{WindowMode@{WindowMode}!gbWindow@{gbWindow}}
+\subsubsection{\texorpdfstring{WindowMode}{WindowMode}}
+{\footnotesize\ttfamily Uint32 gb\+Window\+::\+Window\+Mode\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+该类的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/visualgmq/\+Documents/program/\+C++/\+S\+D\+L2/\+Game\+Body/src/\mbox{\hyperlink{gb_window_8hpp}{gb\+Window.\+hpp}}\item 
+/\+Users/visualgmq/\+Documents/program/\+C++/\+S\+D\+L2/\+Game\+Body/src/\mbox{\hyperlink{gb_window_8cpp}{gb\+Window.\+cpp}}\end{DoxyCompactItemize}

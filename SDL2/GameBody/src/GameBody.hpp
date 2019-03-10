@@ -8,10 +8,13 @@
 #ifndef _GAMEBODY_HPP_
 #define _GAMEBODY_HPP_
 
-#include <string>
+//include gb files
 #include "gbWindow.hpp"
 #include "geomentry.hpp"
 #include "header.hpp"
+//#include "gbInput.hpp"
+
+#include <string>
 #include <SDL2/SDL.h>
 #ifdef _XCODE_PROJECT_ 		//如果是XCODE工程，这个头文件是不一样的
 #include <SDL2_image/SDL_image.h>
@@ -27,9 +30,23 @@
  */
 #define RUN_APP(classname) \
 	int main(int argc,char** argv){\
+		if(SDL_Init(SDL_INIT_EVERYTHING) < 0){\
+			SDL_Log("SDL can't be init");\
+			return -1;\
+		}\
+		if(TTF_Init() < 0){\
+			SDL_Log("TTF can;t init");\
+			return -1;\
+		}\
+		if(IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG) < 0){\
+			SDL_Log("IMG can't init");\
+			return -1;\
+		}\
+		gbInput::Init();\
 		classname gamebodyrunapp123;\
 		while(!gamebodyrunapp123.isQuit())\
 			gamebodyrunapp123.step();\
+		SDL_Quit();\
 		return 0;\
 	}
 
@@ -96,7 +113,6 @@ public:
 	/**
 	 * fn clean()
 	 * @brief 会在析构函数里面调用，用于程序最后的清楚
-	 * @return 如果app结束返回true，否则返回false
 	 */
 	virtual void clean(){};
 	/**

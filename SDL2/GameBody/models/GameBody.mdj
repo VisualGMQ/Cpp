@@ -6582,11 +6582,39 @@
 								"$ref": "AAAAAAFF+qBtyKM79qY="
 							},
 							"font": "Arial;13;0",
-							"left": 480,
-							"top": 888,
+							"left": 240,
+							"top": 752,
 							"width": 428.078125,
 							"height": 25,
 							"text": "所有的工厂在游戏循环之前都要调用各自的destoryAll函数来清除内存。"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFpZoZymTn4/KY=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"left": 168,
+							"top": 504,
+							"width": 72,
+							"height": 40,
+							"text": "重新设计"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFpZoaapTqN+Es=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAFozEZ+e99bkus="
+							},
+							"tail": {
+								"$ref": "AAAAAAFpZoZymTn4/KY="
+							},
+							"points": "207:504;207:424"
 						}
 					]
 				},
@@ -7841,7 +7869,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFozEO5NtvzlQM="
 									},
-									"name": "gbTexture*"
+									"name": "gbTexture*",
+									"type": ""
 								}
 							]
 						},
@@ -8375,7 +8404,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFpW6HG4uPXBNI="
 									},
-									"name": "UITools"
+									"name": "UITools",
+									"type": ""
 								}
 							]
 						},
@@ -8412,6 +8442,14 @@
 							}
 						}
 					]
+				},
+				{
+					"_type": "UMLClass",
+					"_id": "AAAAAAFpZodvLztp0y8=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Class1"
 				}
 			]
 		}

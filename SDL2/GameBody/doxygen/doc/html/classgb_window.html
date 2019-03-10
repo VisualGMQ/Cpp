@@ -1,0 +1,650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GameBody: gbWindow类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">GameBody
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Some tools to develop a game quickly,encapsulated by SDL2</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.15 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classgb_window-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">gbWindow类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>封装SDL_Window的类  
+ <a href="classgb_window.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="gb_window_8hpp_source.html">gbWindow.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a19e70d277e17598ddb3c229e28dbb9e9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a19e70d277e17598ddb3c229e28dbb9e9">MODE</a> { <a class="el" href="classgb_window.html#a19e70d277e17598ddb3c229e28dbb9e9a5740824054b0e553087697d3bd125fe8">WINDOW_BORDERED</a>, 
+<a class="el" href="classgb_window.html#a19e70d277e17598ddb3c229e28dbb9e9abd206e493c11e82b172da8577883cc82">WINDOW_RESIZABLE</a>, 
+<a class="el" href="classgb_window.html#a19e70d277e17598ddb3c229e28dbb9e9a0d12505e22d971c669ff572a2e618f55">WINDOW_FULLSCREEN</a>
+ }</td></tr>
+<tr class="memdesc:a19e70d277e17598ddb3c229e28dbb9e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">记载一些flag，用于setMode函数和getMode()函数  <a href="classgb_window.html#a19e70d277e17598ddb3c229e28dbb9e9">更多...</a><br /></td></tr>
+<tr class="separator:a19e70d277e17598ddb3c229e28dbb9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a08e5afeb1a8c049610b57be380b6403a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a08e5afeb1a8c049610b57be380b6403a">gbWindow</a> (SDL_Window *)</td></tr>
+<tr class="memdesc:a08e5afeb1a8c049610b57be380b6403a"><td class="mdescLeft">&#160;</td><td class="mdescRight">给入一个已经有的SDL_Window*。  <a href="#a08e5afeb1a8c049610b57be380b6403a">更多...</a><br /></td></tr>
+<tr class="separator:a08e5afeb1a8c049610b57be380b6403a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47e8d87e8905b3e7a126d3b1f3bfe66d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a47e8d87e8905b3e7a126d3b1f3bfe66d">gbWindow</a> (const string title, int width, int height, Uint32 type, string iconpath=&quot;&quot;)</td></tr>
+<tr class="memdesc:a47e8d87e8905b3e7a126d3b1f3bfe66d"><td class="mdescLeft">&#160;</td><td class="mdescRight">给入必要的参数来构建一个窗口  <a href="#a47e8d87e8905b3e7a126d3b1f3bfe66d">更多...</a><br /></td></tr>
+<tr class="separator:a47e8d87e8905b3e7a126d3b1f3bfe66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af329e62282ec4ed7184eb8c58d7f7809"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classgb_size.html">gbSize</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#af329e62282ec4ed7184eb8c58d7f7809">getSize</a> ()</td></tr>
+<tr class="memdesc:af329e62282ec4ed7184eb8c58d7f7809"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回窗体大小  <a href="#af329e62282ec4ed7184eb8c58d7f7809">更多...</a><br /></td></tr>
+<tr class="separator:af329e62282ec4ed7184eb8c58d7f7809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e2392232e1ddb4ee301dc8069ab6230"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a2e2392232e1ddb4ee301dc8069ab6230">isFocus</a> ()</td></tr>
+<tr class="memdesc:a2e2392232e1ddb4ee301dc8069ab6230"><td class="mdescLeft">&#160;</td><td class="mdescRight">判断是否有焦点  <a href="#a2e2392232e1ddb4ee301dc8069ab6230">更多...</a><br /></td></tr>
+<tr class="separator:a2e2392232e1ddb4ee301dc8069ab6230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42dac83ea2862f0e5277eaf1df4bf740"><td class="memItemLeft" align="right" valign="top">const string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a42dac83ea2862f0e5277eaf1df4bf740">getTitle</a> ()</td></tr>
+<tr class="memdesc:a42dac83ea2862f0e5277eaf1df4bf740"><td class="mdescLeft">&#160;</td><td class="mdescRight">获得标题  <a href="#a42dac83ea2862f0e5277eaf1df4bf740">更多...</a><br /></td></tr>
+<tr class="separator:a42dac83ea2862f0e5277eaf1df4bf740"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf7f12b75b0b9b3f25105569f77e8f80"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classgb_point.html">gbPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#acf7f12b75b0b9b3f25105569f77e8f80">getPosition</a> ()</td></tr>
+<tr class="memdesc:acf7f12b75b0b9b3f25105569f77e8f80"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回窗体位置  <a href="#acf7f12b75b0b9b3f25105569f77e8f80">更多...</a><br /></td></tr>
+<tr class="separator:acf7f12b75b0b9b3f25105569f77e8f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5a6dbbedb1b0421c5ce41753df71ba3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#aa5a6dbbedb1b0421c5ce41753df71ba3">getBrightness</a> ()</td></tr>
+<tr class="memdesc:aa5a6dbbedb1b0421c5ce41753df71ba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">返回窗体亮度  <a href="#aa5a6dbbedb1b0421c5ce41753df71ba3">更多...</a><br /></td></tr>
+<tr class="separator:aa5a6dbbedb1b0421c5ce41753df71ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af86a84effc2ab72df5dfa881c5e6d620"><td class="memItemLeft" align="right" valign="top">Uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#af86a84effc2ab72df5dfa881c5e6d620">getMode</a> ()</td></tr>
+<tr class="memdesc:af86a84effc2ab72df5dfa881c5e6d620"><td class="mdescLeft">&#160;</td><td class="mdescRight">获得当时传入的flag  <a href="#af86a84effc2ab72df5dfa881c5e6d620">更多...</a><br /></td></tr>
+<tr class="separator:af86a84effc2ab72df5dfa881c5e6d620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17f154d7c86e29d7337fe46cc183c5dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a17f154d7c86e29d7337fe46cc183c5dc">setTitle</a> (string)</td></tr>
+<tr class="memdesc:a17f154d7c86e29d7337fe46cc183c5dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置标题  <a href="#a17f154d7c86e29d7337fe46cc183c5dc">更多...</a><br /></td></tr>
+<tr class="separator:a17f154d7c86e29d7337fe46cc183c5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec17f885a0d2dcf1a6d281799542071a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#aec17f885a0d2dcf1a6d281799542071a">setBrightness</a> (float)</td></tr>
+<tr class="memdesc:aec17f885a0d2dcf1a6d281799542071a"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗体亮度  <a href="#aec17f885a0d2dcf1a6d281799542071a">更多...</a><br /></td></tr>
+<tr class="separator:aec17f885a0d2dcf1a6d281799542071a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a4802fa6b726f60f6dd61c7de2f8d73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a1a4802fa6b726f60f6dd61c7de2f8d73">setIcon</a> (string path)</td></tr>
+<tr class="memdesc:a1a4802fa6b726f60f6dd61c7de2f8d73"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口icon  <a href="#a1a4802fa6b726f60f6dd61c7de2f8d73">更多...</a><br /></td></tr>
+<tr class="separator:a1a4802fa6b726f60f6dd61c7de2f8d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf2068b28248fb4f9ed5d39a5df58d0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#abf2068b28248fb4f9ed5d39a5df58d0a">setMode</a> (<a class="el" href="classgb_window.html#a19e70d277e17598ddb3c229e28dbb9e9">MODE</a>, bool)</td></tr>
+<tr class="memdesc:abf2068b28248fb4f9ed5d39a5df58d0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗体的模式  <a href="#abf2068b28248fb4f9ed5d39a5df58d0a">更多...</a><br /></td></tr>
+<tr class="separator:abf2068b28248fb4f9ed5d39a5df58d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a24cdcd80201982dca8944b073a76f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a7a24cdcd80201982dca8944b073a76f9">GB_GET_BASIC_SOURCE</a> (SDL_Window *, <a class="el" href="classgb_window.html#a1faf26696f9974e05cae77fb240a502e">window</a>)</td></tr>
+<tr class="separator:a7a24cdcd80201982dca8944b073a76f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd0d49bdf1dbe7df86e02ba82a318571"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#acd0d49bdf1dbe7df86e02ba82a318571">~gbWindow</a> ()</td></tr>
+<tr class="separator:acd0d49bdf1dbe7df86e02ba82a318571"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a7afc7ded286b296fa5f2a324cbd065ff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a7afc7ded286b296fa5f2a324cbd065ff">loadIcon</a> (string path)</td></tr>
+<tr class="memdesc:a7afc7ded286b296fa5f2a324cbd065ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">载入icon的函数  <a href="#a7afc7ded286b296fa5f2a324cbd065ff">更多...</a><br /></td></tr>
+<tr class="separator:a7afc7ded286b296fa5f2a324cbd065ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a60b7748425bf49fdf563c870a13c6e07"><td class="memItemLeft" align="right" valign="top">Uint32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a60b7748425bf49fdf563c870a13c6e07">WindowMode</a></td></tr>
+<tr class="separator:a60b7748425bf49fdf563c870a13c6e07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6ff49981281025fd5b027277d693e24"><td class="memItemLeft" align="right" valign="top">SDL_Surface *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#ad6ff49981281025fd5b027277d693e24">icon</a></td></tr>
+<tr class="separator:ad6ff49981281025fd5b027277d693e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1faf26696f9974e05cae77fb240a502e"><td class="memItemLeft" align="right" valign="top">SDL_Window *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgb_window.html#a1faf26696f9974e05cae77fb240a502e">window</a></td></tr>
+<tr class="separator:a1faf26696f9974e05cae77fb240a502e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>封装SDL_Window的类 </p>
+<p>这个类封装了SDL_Window </p>
+</div><h2 class="groupheader">成员枚举类型说明</h2>
+<a id="a19e70d277e17598ddb3c229e28dbb9e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19e70d277e17598ddb3c229e28dbb9e9">&#9670;&nbsp;</a></span>MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classgb_window.html#a19e70d277e17598ddb3c229e28dbb9e9">gbWindow::MODE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>记载一些flag，用于setMode函数和getMode()函数 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a19e70d277e17598ddb3c229e28dbb9e9a5740824054b0e553087697d3bd125fe8"></a>WINDOW_BORDERED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a19e70d277e17598ddb3c229e28dbb9e9abd206e493c11e82b172da8577883cc82"></a>WINDOW_RESIZABLE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a19e70d277e17598ddb3c229e28dbb9e9a0d12505e22d971c669ff572a2e618f55"></a>WINDOW_FULLSCREEN&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a08e5afeb1a8c049610b57be380b6403a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08e5afeb1a8c049610b57be380b6403a">&#9670;&nbsp;</a></span>gbWindow() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::gbWindow </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window *&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>给入一个已经有的SDL_Window*。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>SDL_Window*参数 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a47e8d87e8905b3e7a126d3b1f3bfe66d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47e8d87e8905b3e7a126d3b1f3bfe66d">&#9670;&nbsp;</a></span>gbWindow() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::gbWindow </td>
+          <td>(</td>
+          <td class="paramtype">const string&#160;</td>
+          <td class="paramname"><em>title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Uint32&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>iconpath</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>给入必要的参数来构建一个窗口 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>窗口标题 </td></tr>
+    <tr><td class="paramname">width</td><td>窗口高度 </td></tr>
+    <tr><td class="paramname">height</td><td>窗口宽度 </td></tr>
+    <tr><td class="paramname">type</td><td>SDL2自带的窗体类型，比如SDL_WINDOW_SHOWN </td></tr>
+    <tr><td class="paramname">iconpath</td><td>窗口icon图标的路径。默认为空表示没有图标 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acd0d49bdf1dbe7df86e02ba82a318571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd0d49bdf1dbe7df86e02ba82a318571">&#9670;&nbsp;</a></span>~gbWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::~gbWindow </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a7a24cdcd80201982dca8944b073a76f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a24cdcd80201982dca8944b073a76f9">&#9670;&nbsp;</a></span>GB_GET_BASIC_SOURCE()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::GB_GET_BASIC_SOURCE </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window *&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classgb_window.html#a1faf26696f9974e05cae77fb240a502e">window</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa5a6dbbedb1b0421c5ce41753df71ba3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5a6dbbedb1b0421c5ce41753df71ba3">&#9670;&nbsp;</a></span>getBrightness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::getBrightness </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回窗体亮度 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classgb_window.html#aec17f885a0d2dcf1a6d281799542071a" title="设置窗体亮度">setBrightness()</a> </dd></dl>
+
+</div>
+</div>
+<a id="af86a84effc2ab72df5dfa881c5e6d620"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af86a84effc2ab72df5dfa881c5e6d620">&#9670;&nbsp;</a></span>getMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::getMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获得当时传入的flag </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classgb_window.html#abf2068b28248fb4f9ed5d39a5df58d0a" title="设置窗体的模式">setMode()</a> </dd></dl>
+
+</div>
+</div>
+<a id="acf7f12b75b0b9b3f25105569f77e8f80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf7f12b75b0b9b3f25105569f77e8f80">&#9670;&nbsp;</a></span>getPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回窗体位置 </p>
+<dl class="section see"><dt>参见</dt><dd>setPosition() </dd></dl>
+
+</div>
+</div>
+<a id="af329e62282ec4ed7184eb8c58d7f7809"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af329e62282ec4ed7184eb8c58d7f7809">&#9670;&nbsp;</a></span>getSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::getSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>返回窗体大小 </p>
+<dl class="section return"><dt>返回</dt><dd>返回gbSize </dd></dl>
+
+</div>
+</div>
+<a id="a42dac83ea2862f0e5277eaf1df4bf740"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42dac83ea2862f0e5277eaf1df4bf740">&#9670;&nbsp;</a></span>getTitle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::getTitle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获得标题 </p>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classgb_window.html#a17f154d7c86e29d7337fe46cc183c5dc" title="设置标题">setTitle()</a> </dd></dl>
+
+</div>
+</div>
+<a id="a2e2392232e1ddb4ee301dc8069ab6230"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e2392232e1ddb4ee301dc8069ab6230">&#9670;&nbsp;</a></span>isFocus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::isFocus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>判断是否有焦点 </p>
+<dl class="section return"><dt>返回</dt><dd>如果有焦点返回true </dd></dl>
+
+</div>
+</div>
+<a id="a7afc7ded286b296fa5f2a324cbd065ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7afc7ded286b296fa5f2a324cbd065ff">&#9670;&nbsp;</a></span>loadIcon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::loadIcon </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>载入icon的函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>icon图标的位置 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aec17f885a0d2dcf1a6d281799542071a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec17f885a0d2dcf1a6d281799542071a">&#9670;&nbsp;</a></span>setBrightness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::setBrightness </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>b</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置窗体亮度 </p>
+
+</div>
+</div>
+<a id="a1a4802fa6b726f60f6dd61c7de2f8d73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a4802fa6b726f60f6dd61c7de2f8d73">&#9670;&nbsp;</a></span>setIcon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::setIcon </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置窗口icon </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>icon路径 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abf2068b28248fb4f9ed5d39a5df58d0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf2068b28248fb4f9ed5d39a5df58d0a">&#9670;&nbsp;</a></span>setMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::setMode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classgb_window.html#a19e70d277e17598ddb3c229e28dbb9e9">MODE</a>&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置窗体的模式 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>必须是MODE枚举类型，窗体的模式 </td></tr>
+    <tr><td class="paramname">bool</td><td>设置传入的mode是否可用 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="classgb_window.html#a19e70d277e17598ddb3c229e28dbb9e9" title="记载一些flag，用于setMode函数和getMode()函数">MODE</a></dd></dl>
+<p>mode参数不能够传入任意的SDL_WINDOW_*，而是只能够在MODE枚举里面选择。这个函数内部其实调用了SDL_SetWindowResizable()和SDL_SetWindow_FullScreen()等函数。 </p>
+
+</div>
+</div>
+<a id="a17f154d7c86e29d7337fe46cc183c5dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17f154d7c86e29d7337fe46cc183c5dc">&#9670;&nbsp;</a></span>setTitle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">gbWindow::setTitle </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>title</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置标题 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>标题 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ad6ff49981281025fd5b027277d693e24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6ff49981281025fd5b027277d693e24">&#9670;&nbsp;</a></span>icon</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Surface* gbWindow::icon</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1faf26696f9974e05cae77fb240a502e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1faf26696f9974e05cae77fb240a502e">&#9670;&nbsp;</a></span>window</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Window* gbWindow::window</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60b7748425bf49fdf563c870a13c6e07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60b7748425bf49fdf563c870a13c6e07">&#9670;&nbsp;</a></span>WindowMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Uint32 gbWindow::WindowMode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/Users/visualgmq/Documents/program/C++/SDL2/GameBody/src/<a class="el" href="gb_window_8hpp_source.html">gbWindow.hpp</a></li>
+<li>/Users/visualgmq/Documents/program/C++/SDL2/GameBody/src/<a class="el" href="gb_window_8cpp.html">gbWindow.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
+</body>
+</html>

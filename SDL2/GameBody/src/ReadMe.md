@@ -35,3 +35,5 @@
 * 修改了Segment fault错误
 * 对gbWindow和geomentry写了测试文件，通过全部测试，应该可以正常使用了。
 * 对gbWindow和geomentry写了doxygen注释。
+* 添加了gbInput，但是没办法使用，后面要重写。
+* 添加了gbDrawTool，没有写完。

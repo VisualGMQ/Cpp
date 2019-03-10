@@ -40,3 +40,9 @@ bool gbSize::operator==(gbSize s) const{
 bool gbSize::operator!=(gbSize s) const{
 	return !(*this == s);
 }
+
+gbColor::gbColor(int r,int g,int b){
+		color.r = r;
+		color.g = g;
+		color.b = b;
+}

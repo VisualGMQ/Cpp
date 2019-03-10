@@ -2,9 +2,6 @@
 using namespace std;
 
 GameBody::GameBody(const string title,int width,int height,Uint32 flag,int delaytime):error(false),gamequit(false),delaytime(delaytime),render(nullptr){
-	if(isSDL_Init == false)
-		if(SDL_Init(SDL_INIT_EVERYTHING)==0)
-			isSDL_Init=true;
     win = new gbWindow(title,width,height,flag);
     this->render = SDL_CreateRenderer(win->get(),-1,0);
     if(this->render == nullptr)
@@ -38,6 +35,7 @@ void GameBody::delay(int millisec){
 void GameBody::step(){
 	renderBegin();
 	eventHandle();
+	gbInput::step();
 	update();
 	renderEnd();
 	delay(delaytime);
@@ -51,8 +49,4 @@ GameBody::~GameBody(){
     win = nullptr;
     render = nullptr;
 	globaleRenderer = nullptr;
-	if(isSDL_Init == true){
-		SDL_Quit();	
-		isSDL_Init=false;
-	}
 }
