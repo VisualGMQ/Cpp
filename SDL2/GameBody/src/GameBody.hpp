@@ -66,7 +66,7 @@ public:
 	 * @param flag 传递给SDL_CreateWindow()函数的参数，指定窗口的类型
 	 * @param delaytime 每一帧延时的时间
 	 */
-	GameBody(const string,int width,int height,Uint32,int delaytime);
+	GameBody(const string title,int width,int height,Uint32 flag,int delaytime);
 	/**
 	 * @fn eventHandle()
 	 * @brief 事件处理函数，你可以重写这个事件来给出你自己的处理过程。这个里面只是给出了退出事件的监测
@@ -104,7 +104,7 @@ public:
 	 * @brief 析构函数
 	 */
 	virtual ~GameBody();
-private:
+protected:
 	gbWindow win;
 	SDL_Renderer* render;
 	SDL_Event event;

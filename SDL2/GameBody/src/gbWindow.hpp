@@ -31,10 +31,8 @@ public:
 	const string getTitle();
 	gbPoint getPosition();
 	float getBrightness();
-	float getOpacity();
 	Uint32 getMode();
 	void setTitle(string);
-	void setOpacity(float);
 	void setBrightness(float);
 	void setIcon(string path);
 	void setMode(MODE,bool);

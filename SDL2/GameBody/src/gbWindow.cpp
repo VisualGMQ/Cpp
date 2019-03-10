@@ -47,15 +47,6 @@ gbPoint gbWindow::getPosition(){
 	SDL_GetWindowPosition(window,&x,&y);
 	return gbPoint(x,y);
 }
-float gbWindow::getBrightness(){
-	return SDL_GetWindowBrightness(window);
-}
-
-float gbWindow::getOpacity(){
-	float op;
-	SDL_GetWindowOpacity(window,&op);
-	return op;
-}
 
 Uint32 gbWindow::getMode(){
 	return WindowMode;
@@ -63,14 +54,6 @@ Uint32 gbWindow::getMode(){
 
 void gbWindow::setTitle(string title){
 	SDL_SetWindowTitle(window,title.c_str());
-}
-
-void gbWindow::setOpacity(float op){
-	SDL_SetWindowOpacity(window,op);
-}
-
-void gbWindow::setBrightness(float br){
-	SDL_SetWindowBrightness(window,br);
 }
 
 void gbWindow::setIcon(string path){
@@ -93,9 +76,6 @@ void gbWindow::setMode(MODE mode,bool enable){
 	switch(mode){
 		case MODE::WINDOW_BORDERED:
 			SDL_SetWindowBordered(window,sdlbool);
-			break;
-		case MODE::WINDOW_RESIZABLE:
-			SDL_SetWindowResizable(window,sdlbool);
 			break;
 		case MODE::WINDOW_FULLSCREEN:
 			SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN);

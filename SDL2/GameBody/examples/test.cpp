@@ -1,3 +1,5 @@
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include "../src/GameBody.hpp"
 
 class OwnGame : public GameBody{
