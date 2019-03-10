@@ -1,11 +1,13 @@
 #include "GameBody.hpp"
 using namespace std;
 
-GameBody::GameBody(const string title,int width,int height,Uint32 flag,int delaytime):win(title,width,height,flag),error(false),gamequit(false),delaytime(delaytime){
+GameBody::GameBody(const string title,int width,int height,Uint32 flag,int delaytime):error(false),gamequit(false),delaytime(delaytime),render(nullptr){
 	if(isSDL_Init == false)
 		if(SDL_Init(SDL_INIT_EVERYTHING)==0)
 			isSDL_Init=true;
-	if((render = SDL_CreateRenderer(win.get(),-1,0))==nullptr)
+    win = new gbWindow(title,width,height,flag);
+    this->render = SDL_CreateRenderer(win->get(),-1,0);
+    if(this->render == nullptr)
 		error=true;
 	else
 		globaleRenderer = render;
@@ -44,6 +46,10 @@ void GameBody::step(){
 GameBody::~GameBody(){
 	clean();
 	SDL_DestroyRenderer(render);
+    if(win != nullptr)
+        delete win;
+    win = nullptr;
+    render = nullptr;
 	globaleRenderer = nullptr;
 	if(isSDL_Init == true){
 		SDL_Quit();	

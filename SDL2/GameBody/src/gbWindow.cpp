@@ -8,24 +8,24 @@ gbWindow::gbWindow(SDL_Window* window){
 	this->window = window;
 }
 
- bool gbWindow::loadIcon(string path){
-	if(path == "")
-		return false;
-	icon = IMG_Load(path.c_str());
-	if(window!=nullptr){
-		SDL_SetWindowIcon(window,icon);
-		return true;
-	}
-	SDL_Log("window is nullptr");
-	return false;
-}
-
-gbWindow::gbWindow(string title,int width,int height,Uint32 flag,string iconpath){
-	window = SDL_CreateWindow(title.c_str(),SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,width,height,flag);
+gbWindow::gbWindow(const string title,int width,int height,Uint32 flag,string iconpath){
+	this->window = SDL_CreateWindow(title.c_str(),SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,width,height,flag);
 	WindowMode = flag;
 	if(window == nullptr)
 		abort();
 	loadIcon(iconpath);
+}
+
+bool gbWindow::loadIcon(string path){
+    if(path == "")
+        return false;
+    icon = IMG_Load(path.c_str());
+    if(window!=nullptr){
+        SDL_SetWindowIcon(window,icon);
+        return true;
+    }
+    SDL_Log("window is nullptr");
+    return false;
 }
 
 gbSize gbWindow::getSize(){
@@ -56,6 +56,15 @@ void gbWindow::setTitle(string title){
 	SDL_SetWindowTitle(window,title.c_str());
 }
 
+float gbWindow::getBrightness(){
+	float brightness = SDL_GetWindowBrightness(window);
+	return brightness;
+}
+
+void gbWindow::setBrightness(float b){
+	SDL_SetWindowBrightness(window,b);
+}
+
 void gbWindow::setIcon(string path){
 	SDL_Surface* surface  = nullptr;
 	if(icon != nullptr)
@@ -84,6 +93,8 @@ void gbWindow::setMode(MODE mode,bool enable){
 }
 
 gbWindow::~gbWindow(){
-	if(window!=nullptr)
-			SDL_DestroyWindow(window);
+    if(window!=nullptr){
+        SDL_DestroyWindow(window);
+        window = nullptr;
+    }
 }

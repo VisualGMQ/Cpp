@@ -17,6 +17,8 @@
 class gbRect{
 public:
 	gbRect(int x,int y,int w,int h);
+	bool operator==(gbRect) const;
+	bool operator!=(gbRect) const;
 	GB_GET_BASIC_SOURCE(SDL_Rect&,rect)
 	GB_CREATE_GETSETFUNC(int,X,rect.x)
 	GB_CREATE_GETSETFUNC(int,Y,rect.y)
@@ -33,6 +35,8 @@ private:
 class gbPoint{
 public:
 	gbPoint(int x,int y);
+	bool operator==(gbPoint) const;
+	bool operator!=(gbPoint) const;
 	GB_GET_BASIC_SOURCE(SDL_Point&,point)
 	GB_CREATE_GETSETFUNC(int,X,point.x)
 	GB_CREATE_GETSETFUNC(int,Y,point.y)
@@ -49,6 +53,8 @@ private:
 class gbSize{
 public:
 	gbSize(int w,int h);
+	bool operator==(gbSize) const;
+	bool operator!=(gbSize) const;
 	GB_GET_BASIC_SOURCE(SDL_Point&,size)
 	GB_CREATE_GETSETFUNC(int,Width,size.x);
 	GB_CREATE_GETSETFUNC(int,Height,size.y);

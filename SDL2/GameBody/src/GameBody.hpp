@@ -105,7 +105,7 @@ public:
 	 */
 	virtual ~GameBody();
 protected:
-	gbWindow win;
+	gbWindow* win;
 	SDL_Renderer* render;
 	SDL_Event event;
 	bool error;

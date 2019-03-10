@@ -4,7 +4,7 @@
 
 class OwnGame : public GameBody{
 public:
-	OwnGame():GameBody("test",700,700,SDL_WINDOW_RESIZABLE,30){};
+	OwnGame():GameBody("test",700,700,SDL_WINDOW_SHOWN,30){};
 };
 
 RUN_APP(OwnGame)
