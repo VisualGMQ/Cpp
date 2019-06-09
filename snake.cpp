@@ -1,5 +1,5 @@
 /*
-snake version 1.0.0
+snake version 1.0.3
 
 used ncurses library.
 this game only avaliable at UNIX, LINUX, MacOSX platform.
@@ -8,6 +8,12 @@ if you want to play this game please input below line in terminal:
 g++ snake.cpp -o snake -lncurses -std=c++11
 
 then open the `snake` to play!
+
+* log
+* version 1.0.1
+    refactoryed code, from Process-Oriented to Object-Oriented
+* version 1.0.3
+    refactoryed code, add snake head bold. Fixed bug of turning back.
 */
 #include <ncurses.h>
 #include <unistd.h>
@@ -16,82 +22,48 @@ then open the `snake` to play!
 #include <vector>
 #include <utility>
 using namespace std;
+using Position = pair<int,int>;
 
 #ifdef DEBUG_SNAKE
 int countnum = 0;
 #endif
 
+//a global variable, because this is a single file.
+bool isgameover = false;
+
+enum ObjectType{SOLID, FOOD};   //for collision
 enum Direction{LEFT, RIGHT, TOP, BOTTOM};
 
-//class Snake
-class Snake{
+class Food;
+class Score;
+class Snake;
+class GameMain;
+class Controller;
+
+class Object{
 public:
-    Snake(){
-        direction = LEFT;
+    ObjectType getType(){
+        return type;
+    };
+
+    Position getPos(){
+        return pos;
     }
 
-    void init(){
-        addBody(make_pair(COLS/2, LINES/2));
-    }
-
-    int size(){
-        return body.size();
-    }
-
-    void addBody(pair<int,int> node){
-        body.push_back(node);
-    }
-
-    void draw(){
-        attron(COLOR_PAIR(3)|A_BOLD);
-        for(int i=0;i<body.size();i++){
-            #ifdef DEBUG_SNAKE
-            mvprintw(i, 0, "snake[%d]: x->%d, y->%d", i, body[i].first, body[i].second);
-            #endif
-            mvaddch(body[i].second, body[i].first, SNAKE_BODY);
-        }
-        attroff(COLOR_PAIR(3)|A_BOLD);
-    }
-
-    vector<pair<int, int>> getBody(){
-        return body;
-    }
-
-    void step(){
-        body.pop_back();
-        pair<int, int> head = body[0];
-        if(direction == LEFT)
-            head.first--;
-        else if(direction == RIGHT)
-            head.first++;
-        else if(direction == TOP)
-            head.second--;
-        else
-            head.second++;
-        body.insert(body.begin(), head);
-    }
-
-    Direction getDirection(){
-        return direction;
-    }
-
-    void setDirection(Direction dir){
-        direction = dir;
-    }
-
-    pair<int, int>& operator[](int idx){
-        return body[idx];
-    }
-private:
-    static const char SNAKE_BODY = 'S';
-    vector<pair<int, int>> body;
-    Direction direction;
+    //befor collision, collision, after collision
+    virtual void precollision(Object& obj) = 0;
+    virtual void collision(Object& obj) = 0;
+    virtual void aftercollision() = 0;
+protected:
+    Position pos;
+    ObjectType type;
 };
 
 //class Food
-class Food{
+class Food:public Object{
 public:
     Food(){
+        type = ObjectType::FOOD;
         changePos();
     }
 
@@ -112,12 +84,13 @@ public:
         pos = make_pair(x, y);
     }
 
-    pair<int, int> getPos(){
-        return pos;
+    void collision(Object& o){}
+    void precollision(Object& o){}
+    void aftercollision(){
+        changePos();
     }
 private:
     static const char FOOD = 'D';
-    pair<int, int> pos;
 };
 
 //class Score
@@ -148,6 +121,118 @@ private:
     int score;
 };
 
+//class Snake
+class Snake:public Object{
+public:
+    Snake(){
+        direction = LEFT;
+        type = SOLID;
+    }
+
+    void init(Score* s){
+        addBody(make_pair(COLS/2, LINES/2));
+        addBody(make_pair(COLS/2+1, LINES/2));
+        score = s;
+    }
+
+    int size(){
+        return body.size();
+    }
+
+    void addBody(Position node){
+        body.push_back(node);
+    }
+
+    void drawHead(){
+        //init_color(COLOR_YELLOW, 700, 700, 0);
+        attron(COLOR_PAIR(3)|A_BOLD);
+        mvaddch(body[0].second, body[0].first, SNAKE_BODY);
+        attroff(COLOR_PAIR(3)|A_BOLD);
+        //init_color(COLOR_YELLOW, 1000, 1000, 0);
+    }
+
+    void drawBody(){
+        attron(COLOR_PAIR(3));
+        for(int i=1;i<body.size();i++){
+            #ifdef DEBUG_SNAKE
+            mvprintw(i, 0, "snake[%d]: x->%d, y->%d", i, body[i].first, body[i].second);
+            #endif
+            mvaddch(body[i].second, body[i].first, SNAKE_BODY);
+        }
+        attroff(COLOR_PAIR(3));
+    }
+
+    void draw(){
+        drawHead();
+        drawBody();
+    }
+
+    vector<Position> getBody(){
+        return body;
+    }
+
+    void step(){
+        body.pop_back();
+        Position head = body[0];
+        if(direction == LEFT)
+            head.first--;
+        else if(direction == RIGHT)
+            head.first++;
+        else if(direction == TOP)
+            head.second--;
+        else
+            head.second++;
+        body.insert(body.begin(), head);
+    }
+
+    Direction getDirection(){
+        return direction;
+    }
+
+    void setDirection(Direction dir){
+        direction = dir;
+    }
+
+    Position& operator[](int idx){
+        return body[idx];
+    }
+
+    void precollision(Object& obj){}
+
+    void collision(Object& obj){
+        collisionBorder();
+        if(obj.getType() == FOOD){
+            Position head = body[0];
+            Position foodPos = obj.getPos();
+            if(head.first == foodPos.first && head.second == foodPos.second){
+                obj.aftercollision();
+                Position tail = body[body.size()-1];
+                addBody(tail);
+                score->increase(1);
+            }
+        }
+    }
+
+    void aftercollision(){}
+private:
+    static const char SNAKE_BODY = 'S';
+    vector<Position> body;
+    Direction direction;
+    Score* score;
+    void collisionBorder(){
+        Position head = body[0];
+        for(int i=1;i<body.size();i++)
+            if(head.first == body[i].first && head.second == body[i].second){ 
+                isgameover = true;
+                return ;
+            }
+        if(head.first == 0 || head.first == COLS-1 || head.second == 0 || head.second == LINES-1){
+            isgameover = true;
+            return ;
+        }
+    }
+};
+
 //class Controller
 class Controller{
 public:
@@ -157,16 +242,20 @@ public:
         Direction direction = snake.getDirection();
         switch(getch()){
             case 'a':
-                direction = LEFT;
+                if(snake[0].first-1 != snake[1].first)
+                    direction = LEFT;
                 break;
             case 'w':
-                direction = TOP;
+                if(snake[0].second-1 != snake[1].second)
+                    direction = TOP;
                 break;
             case 'd':
-                direction = RIGHT;
+                if(snake[0].first+1 != snake[1].first)
+                    direction = RIGHT;
                 break;
             case 's':
-                direction = BOTTOM;
+                if(snake[0].second+1 != snake[1].second)
+                    direction = BOTTOM;
                 break;
         }
         snake.setDirection(direction);
@@ -179,7 +268,7 @@ public:
     GameMain(){
         init_config();
         init_color();
-        snake.init();
+        snake.init(&score);
     }
 
     void init_color(){
@@ -203,25 +292,6 @@ public:
         keypad(stdscr, TRUE);
     }
 
-    void collisionTest(){
-        pair<int, int> head = snake[0];
-        for(int i=1;i<snake.size();i++)
-            if(head.first == snake[i].first && head.second == snake[i].second){
-                isgameover = true;
-                return ;
-            }
-        if(head.first == 0 || head.first == COLS-1 || head.second == 0 || head.second == LINES-1){
-            isgameover = true;
-            return ;
-        }
-        pair<int, int> foodPos = food.getPos();
-        if(head.first == foodPos.first && head.second == foodPos.second){
-            food.changePos();
-            pair<int, int> tail = snake[snake.size()-1];
-            snake.addBody(tail);
-            score.increase(1);
-        }
-    }
 
     void drawGameBody(){
         clear();
@@ -230,7 +300,7 @@ public:
         food.draw();
         snake.draw();
         controller.control(snake);
-        collisionTest();
+        snake.collision(food);
         snake.step();
         #ifdef DEBUG_SNAKE
         mvprintw(LINES-1, 0, "count:%d", countnum++);
@@ -284,12 +354,12 @@ public:
     }
 private:
     static const int DELAY_TIME = 5;
-    bool isgameover;
     Snake snake;
     Food food;
     Score score;
     Controller controller;
 };
+
 
 //main function
 int main(){
