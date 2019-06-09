@@ -3,6 +3,7 @@
 #include <wx/propgrid/propgrid.h>
 #include <wx/treectrl.h>
 #include <wx/notebook.h>
+#define TIME_ID 1001
 using namespace std;
 
 class myApp:public wxApp{
@@ -14,10 +15,14 @@ class myFrame:public wxFrame{
 public:
 		myFrame(const wxString& title,const wxSize& size);
 private:
+		void onTimer(wxTimerEvent& event);
+		wxTimer m_timer;
+		int value;
 		wxDECLARE_EVENT_TABLE();
 };
 
 wxBEGIN_EVENT_TABLE(myFrame,wxFrame)
+EVT_TIMER(TIME_ID, myFrame::onTimer)
 wxEND_EVENT_TABLE()
 
 wxIMPLEMENT_APP(myApp);
@@ -30,7 +35,7 @@ enum Menu{
 };
 
 myFrame::myFrame(const wxString& title,const wxSize& size)
-		:wxFrame(nullptr,-1,title,wxDefaultPosition,size){
+		:wxFrame(nullptr,-1,title,wxDefaultPosition,size), m_timer(this, TIME_ID){
 		//wxMenu and wxMenuBar
 		wxMenuBar* menubar = new wxMenuBar();
 		wxMenu* filemenu = new wxMenu();
@@ -89,8 +94,22 @@ myFrame::myFrame(const wxString& title,const wxSize& size)
 		as.Add("Radio2");
 		as.Add("Radio3");
 		wxRadioBox* box = new wxRadioBox(this,wxID_ANY,"RadioBox",wxPoint(0,400),wxSize(150,150),as);
-
+		//wxPropertyGrid
+		wxPropertyGrid* pgrid = new wxPropertyGrid(this, wxID_ANY, wxDefaultPosition, wxSize(200, 400));
+		pgrid->SetExtraStyle( wxPG_EX_HELP_AS_TOOLTIPS );
+		wxStringProperty* p1 = new wxStringProperty("variable1", wxPG_LABEL, "init value");
+		pgrid->Append(p1);
+		pgrid->Append(new wxStringProperty("variable2", "key2", "init value"));
+		pgrid->Append(new wxStringProperty("variable3", "key3", "init value"));
+		pgrid->Append(new wxStringProperty("variable4", "key4", "init value"));
+		p1->SetValue("value1");
 		Center();
+		m_timer.Start(1);
+}
+
+void myFrame::onTimer(wxTimerEvent& event){
+	cout<<value<<endl;
+	value++;
 }
 
 bool myApp::OnInit(){

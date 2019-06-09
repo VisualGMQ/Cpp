@@ -33,6 +33,7 @@ myFrame::myFrame(const wxString& title,const wxSize& size)
 
 bool myApp::OnInit(){
 		myFrame* frame = new myFrame("hello world",wxSize(400,400));
+		
 		frame->Show(true);
 		return true;
 }
