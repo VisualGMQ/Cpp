@@ -22,7 +22,7 @@ then open the `snake` to play!
 #include <vector>
 #include <utility>
 using namespace std;
-using Position = pair<int,int>;
+using Position = pair<int,int>; //first is x, second is y
 
 #ifdef DEBUG_SNAKE
 int countnum = 0;
@@ -32,13 +32,15 @@ int countnum = 0;
 bool isgameover = false;
 
 enum ObjectType{SOLID, FOOD};   //for collision
-enum Direction{LEFT, RIGHT, TOP, BOTTOM};
+enum Direction{LEFT, RIGHT, TOP, BOTTOM};   //for moving
 
 class Food;
 class Score;
 class Snake;
 class GameMain;
 class Controller;
+//TODO implement it!
+class CollisionSystem;  //to manage collision objects
 
 class Object{
 public:
