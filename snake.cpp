@@ -1,5 +1,5 @@
 /*
-snake version 1.0.3
+snake version 1.1.0
 
 used ncurses library.
 this game only avaliable at UNIX, LINUX, MacOSX platform.
