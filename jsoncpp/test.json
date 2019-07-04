@@ -1,0 +1,10 @@
+{
+    "name": "VisualGMQ",
+    "age": 20,
+    "info": {
+        "school": "AnHuiLiGongDaXue",
+        "credit": "2017303119",
+        "male": true
+    },
+    "friend": ["XianFen", "CaiChuanXun", "WuTao"]
+}
