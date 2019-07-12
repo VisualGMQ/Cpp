@@ -1,18 +1,93 @@
+/*
+a small game named saolei
+name: SaoLei
+author: VisualGMQ
+data: 2019.7.10
+
+compile with SDL2:
+    g++ main.cpp -o saolei `sdl2-config --libs --cflags` `pkg-config --libs --cflags SDL2_image` -std=c++11
+
+console options:
+    * eazy: open eazy model
+    * normal: open normal model
+    * hard: open hard model
+    * row col bomb_num: self-define map
+
+if you open it directly(not by console), it will show you normal model
+*/
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <ctime>
 #include <sstream>
 #include <vector>
 #include <string>
 #include <iostream>
 #include <random>
-//#define __DEBUG__
+#include <map>
+#define __DEBUG__
+#ifdef __DEBUG__
+#include <spdlog/sinks/stdout_color_sinks.h>
+#endif
 using namespace std;
 
-//TODO implement restart panel and win panel
+class Director{
+public:
+    static void initDirector(SDL_Renderer* nrender){
+        director = new Director(nrender);
+    }
+    
+    static Director* getInstance(){
+        return director;
+    }
+    
+    static void freeDirector(){
+        if(director != nullptr)
+            delete director;
+    }
+    
+    SDL_Renderer* getRender(){
+        return render;
+    }
+private:
+    Director(SDL_Renderer* nrender):render(nrender){}
+    SDL_Renderer* render;
+    static Director* director;
+};
+
+Director* Director::director = nullptr;
+
+class ImageStorage{
+public:
+    static void loadImage(const string name, string path){
+        if(images.find(name)==images.end()){
+            SDL_Surface* surface = IMG_Load(path.c_str());
+            if(surface == nullptr)
+                cout<<path<<" is not found"<<endl;
+            else{
+                SDL_Texture* texture = SDL_CreateTextureFromSurface(Director::getInstance()->getRender(), surface);
+                images[name] = texture;
+                SDL_FreeSurface(surface);
+            }
+        }
+    }
+    
+    static SDL_Texture* getImage(const string name){
+        return images[name];
+    }
+    
+    static void cleanStorage(){
+        for(auto it=images.begin();it!=images.end();it++)
+            SDL_DestroyTexture(it->second);
+    }
+private:
+    static map<string, SDL_Texture*> images;
+};
+
+map<string, SDL_Texture*> ImageStorage::images = map<string, SDL_Texture*>();
 
 class UIitem{
 public:
-    virtual void update(SDL_Renderer* render) = 0;
+    virtual void update() = 0;
     virtual void eventHandle(){
         if(event->type == SDL_MOUSEBUTTONDOWN)
             mouseDown(event->button.x, event->button.y);
@@ -30,9 +105,9 @@ public:
     void setRect(int x, int y, int w, int h){rect.x = x;rect.y = y;rect.h = h;rect.w = w;}
     //listener form Main
     void postEvent(const SDL_Event& nevent){event = &nevent;}
-    virtual void mouseDown(int mx, int my) = 0;
-    virtual void mouseUp(int mx, int my) = 0;
-    virtual void mouseMove(int mx, int my) = 0;
+    virtual void mouseDown(const int& mx, const int& my) = 0;
+    virtual void mouseUp(const int& mx, const int& my) = 0;
+    virtual void mouseMove(const int& mx, const int& my) = 0;
     SDL_Rect getRect(){return rect;}
 protected:
     SDL_Rect rect;
@@ -58,17 +133,17 @@ public:
         return cell;
     }
     
-    static void clearInstances(){
+    static void cleanInstances(){
         for(int i=0;i<instances.size();i++)
             delete instances[i];
         instances.clear();
     }
     
-    Cell(CellType ctype):ismouseon(false),type(ctype),num(0),state(COVERED),surface(nullptr){}
-    Cell(CellType ctype, int w, int h):ismouseon(false),type(ctype),num(0),state(COVERED),surface(nullptr){
+    Cell(CellType ctype):ismouseon(false),type(ctype),num(0),state(COVERED),texture(nullptr){}
+    Cell(CellType ctype, int w, int h):ismouseon(false),type(ctype),num(0),state(COVERED),texture(nullptr){
         resize(w, h);
     }
-    Cell(CellType ctype, int x, int y, int w, int h):ismouseon(false),type(ctype),num(0),state(COVERED),surface(nullptr){
+    Cell(CellType ctype, int x, int y, int w, int h):ismouseon(false),type(ctype),num(0),state(COVERED),texture(nullptr){
         setRect(x, y, w, h);
     }
     void changeType(CellType ctype){type=ctype;}
@@ -76,51 +151,40 @@ public:
     void setState(CellState nstate){
         state = nstate;
     }
-    void loadImage(string path){
-        if(surface != nullptr)
-            SDL_FreeSurface(surface);
-        surface = IMG_Load(path.c_str());
-    }
-    void loadImage(char path[]){
-        if(surface != nullptr)
-            SDL_FreeSurface(surface);
-        surface = IMG_Load(path);
-    }
+    
     CellState getState(){return state;}
     void changeNum(int nnum){num = nnum;}
     int getNum(){return num;}
     
-    void update(SDL_Renderer* render) override{
+    void update() override{
         //eventHandle();
+        SDL_Renderer* render = Director::getInstance()->getRender();
         switch(state){
             case COVERED:
+            case HAS_FLAG:
                 drawCovered(render);
                 break;
             case NO_COVERED:
                 drawUncovered(render);
                 break;
-            case HAS_FLAG:
-                drawCovered(render);
-                break;
         }
     }
     
     ~Cell(){
-        SDL_FreeSurface(surface);
+        //SDL_DestroyTexture(texture);
     }
 private:
     static vector<Cell*> instances;
     CellType type;
     CellState state;
     int num;
-    SDL_Surface* surface;
+    SDL_Texture* texture;
     bool ismouseon;
     void drawCovered(SDL_Renderer* render){
         if(state == HAS_FLAG)
-            loadImage("./src/hongqi.png");
+            texture = ImageStorage::getImage("hongqi");
         else if(state == COVERED)
-            loadImage("./src/but_back.png");
-        SDL_Texture* texture = SDL_CreateTextureFromSurface(render, surface);
+            texture = ImageStorage::getImage("but_back");
         SDL_RenderCopy(render, texture, nullptr, &rect);
         SDL_SetRenderDrawColor(render, 0, 255, 0, 255);
         SDL_RenderDrawRect(render, &rect);
@@ -131,31 +195,24 @@ private:
             SDL_SetRenderDrawColor(render, 0, 0, 200, 255);
             SDL_RenderDrawRect(render, &rect);
         }
-        SDL_DestroyTexture(texture);
     }
     void drawUncovered(SDL_Renderer* render){
-        char buff[1024] = {'\0'};
+        char buff[10] = {'\0'};
         switch(type){
             case NO_BOMB:
-                sprintf(buff, "./src/%d.jpg", num);
-                loadImage(buff);
+                sprintf(buff, "%d", num);
+                texture = ImageStorage::getImage(buff);
                 break;
             case HAS_BOMB:
-                loadImage("./src/bomb.jpg");
+                texture = ImageStorage::getImage("bomb");
                 break;
         }
-        if(surface == nullptr)
-            SDL_Log("surface is null");
-        else{
-            SDL_Texture* texture = SDL_CreateTextureFromSurface(render, surface);
-            SDL_RenderCopy(render, texture, nullptr, &rect);
-            SDL_DestroyTexture(texture);
-        }
+        SDL_RenderCopy(render, texture, nullptr, &rect);
         SDL_SetRenderDrawColor(render, 0, 0, 200, 255);
         SDL_RenderDrawRect(render, &rect);
     }
     
-    void mouseDown(int mx, int my) override{
+    void mouseDown(const int& mx, const int& my) override{
         SDL_Point p;
         p.x = mx;
         p.y = my;
@@ -170,7 +227,7 @@ private:
             }
         }
     }
-    void mouseMove(int mx, int my) override{
+    void mouseMove(const int& mx, const int& my) override{
         SDL_Point p;
         p.x = mx;
         p.y = my;
@@ -179,7 +236,7 @@ private:
         }else
             ismouseon = false;
     }
-    void mouseUp(int mx, int my) override{}
+    void mouseUp(const int& mx, const int& my) override{}
 };
 
 vector<Cell*> Cell::instances = vector<Cell*>();
@@ -192,7 +249,7 @@ public:
     }
     
     void reinit(){
-        Cell::clearInstances();
+        Cell::cleanInstances();
         map.clear();
         init(width, height, row, col, bombnum);
     }
@@ -264,10 +321,10 @@ public:
         }
     }
     
-    void update(SDL_Renderer* render){
+    void update(){
         for(int i=0;i<map.size();i++)
             for(int j=0;j<map[0].size();j++)
-                map[i][j]->update(render);
+                map[i][j]->update();
     }
     
     int getRow(){
@@ -354,8 +411,12 @@ public:
                 map[i][j]->setState(NO_COVERED);
     }
     
+    bool isFullUncoverd() const{
+        return uncoverd_cellnum == row*col-bombnum;
+    }
+    
     ~Map(){
-        Cell::clearInstances();
+        Cell::cleanInstances();
         map.clear();
     }
 private:
@@ -392,7 +453,7 @@ public:
         return b;
     }
     
-    static void clearInstances(){
+    static void cleanInstances(){
         for(int i=0;i<instances.size();i++)
             delete instances[i];
         instances.clear();
@@ -406,23 +467,23 @@ public:
         
     }
     
-    Button(ButtonID bid):id(bid),isshow(false),surface(nullptr){
+    Button(ButtonID bid):id(bid),isshow(false),texture(nullptr){
         color.r = 100;
         color.g = 100;
         color.b = 100;
         color.a = 255;
-        surface = IMG_Load("./src/flush.png");
+        texture = texture = ImageStorage::getImage("flush");
     }
-    Button(ButtonID bid, int w, int h):id(bid),isshow(false),surface(nullptr){
+    Button(ButtonID bid, int w, int h):id(bid),isshow(false),texture(nullptr){
         rect.w = w;
         rect.h = h;
         color.r = 100;
         color.g = 100;
         color.b = 100;
         color.a = 255;
-        surface = IMG_Load("./src/flush.png");
+        texture = texture = ImageStorage::getImage("flush");
     }
-    Button(ButtonID bid, int x, int y, int w, int h):id(bid),isshow(false),surface(nullptr){
+    Button(ButtonID bid, int x, int y, int w, int h):id(bid),isshow(false),texture(nullptr){
         rect.x = x;
         rect.y = y;
         rect.w = w;
@@ -431,15 +492,14 @@ public:
         color.g = 100;
         color.b = 100;
         color.a = 255;
-        surface = IMG_Load("./src/flush.png");
+        texture = ImageStorage::getImage("flush");
     }
-    void update(SDL_Renderer* render) override{
+    void update() override{
         if(isshow){
-            SDL_Texture* texture = SDL_CreateTextureFromSurface(render, surface);
+            SDL_Renderer* render = Director::getInstance()->getRender();
             SDL_RenderCopy(render, texture, nullptr, &rect);
             SDL_SetRenderDrawColor(render, color.r, color.g, color.b, color.a);
             SDL_RenderFillRect(render, &rect);
-            SDL_DestroyTexture(texture);
         }
     }
     void setRelateMap(Map* nmap){
@@ -460,7 +520,7 @@ public:
     }
     
     ~Button(){
-        SDL_FreeSurface(surface);
+        //SDL_DestroyTexture(texture);
     }
 private:
     static vector<Button*> instances;
@@ -468,8 +528,8 @@ private:
     SDL_Color color;
     Map* map;
     bool isshow;
-    SDL_Surface* surface;
-    void mouseDown(int mx, int my) override{
+    SDL_Texture* texture;
+    void mouseDown(const int& mx, const int& my) override{
         SDL_Point p;
         p.x = mx;
         p.y = my;
@@ -482,8 +542,8 @@ private:
             map->reinit();
         }
     }
-    void mouseUp(int mx, int my) override{}
-    void mouseMove(int mx, int my) override{
+    void mouseUp(const int& mx, const int& my) override{}
+    void mouseMove(const int& mx, const int& my) override{
         SDL_Point p;
         p.x = mx;
         p.y = my;
@@ -510,16 +570,24 @@ private:
 
 class Main{
 public:
-    Main(int argc, char** argv):width(600), height(600), delaytime(1), isquit(false){
+    Main(int argc, char** argv):width(600), height(600), delaytime(30), isquit(false),isfocuse(true){
         SDL_Init(SDL_INIT_EVERYTHING);
         IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG|IMG_INIT_TIF|IMG_INIT_WEBP);
         window = SDL_CreateWindow("扫雷", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
-        //SDL_assert(window == nullptr);
-        render = SDL_CreateRenderer(window, -1, 0);
-        //SDL_assert(render == nullptr);
-        paramParse(argc, argv);
+        render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC|SDL_RENDERER_TARGETTEXTURE);
         SDL_SetRenderDrawBlendMode(render, SDL_BLENDMODE_BLEND);
-        //map.init(width, height, 20, 20, 50);
+        paramParse(argc, argv);
+        Director::initDirector(render);
+        loadImageResource();
+        initButton();
+#ifdef __DEBUG__
+        auto console_log = spdlog::stdout_color_mt("console_log");
+        console_log->set_level(spdlog::level::info);
+        console_log->info("Main init");
+#endif
+    }
+
+    void initButton(){
         b = Button::createInstance(B_OK);
         b->show(false);
         b->resize(100, 100);
@@ -527,14 +595,31 @@ public:
         b->setRelateMap(&map);
     }
     
+    void loadImageResource(){
+        ImageStorage::loadImage("0", "./src/0.jpg");
+        ImageStorage::loadImage("1", "./src/1.jpg");
+        ImageStorage::loadImage("2", "./src/2.jpg");
+        ImageStorage::loadImage("3", "./src/3.jpg");
+        ImageStorage::loadImage("4", "./src/4.jpg");
+        ImageStorage::loadImage("5", "./src/5.jpg");
+        ImageStorage::loadImage("6", "./src/6.jpg");
+        ImageStorage::loadImage("7", "./src/7.jpg");
+        ImageStorage::loadImage("8", "./src/8.jpg");
+        ImageStorage::loadImage("flush", "./src/flush.png");
+        ImageStorage::loadImage("bomb", "./src/bomb.jpg");
+        ImageStorage::loadImage("but_back", "./src/but_back.png");
+        ImageStorage::loadImage("but_open", "./src/but_open.png");
+        ImageStorage::loadImage("hongqi", "./src/hongqi.png");
+    }
+    
     void paramParse(int argc, char** argv){
         if(argc != 1){
             if(argc == 2){
-                if(strcpy(argv[1], "eazy"))
+                if(strcmp(argv[1], "eazy")==0)
                     map.init(width, height, 10, 10, 20);
-                if(strcpy(argv[1], "normal"))
+                if(strcmp(argv[1], "normal")==0)
                     map.init(width, height, 20, 20, 100);
-                if(strcpy(argv[1], "hard"))
+                if(strcmp(argv[1], "hard")==0)
                     map.init(width, height, 30, 30, 300);
             }
             if(argc == 4){
@@ -542,10 +627,13 @@ public:
                 int row, col, bn;
                 ss<<argv[1];
                 ss>>row;
+                ss.clear();
                 ss<<argv[2];
                 ss>>col;
+                ss.clear();
                 ss<<argv[3];
                 ss>>bn;
+                ss.clear();
                 map.init(width, height, row, col, bn);
             }
         }else
@@ -555,11 +643,28 @@ public:
     
     void handleEvent(){
         while(SDL_PollEvent(&event)){
-            map.eventHandle(event);
-            Cell::postAllEvents(event);
-            Button::postAllEvents(event);
             if(event.type == SDL_QUIT)
                 isquit = true;
+            if(event.type == SDL_WINDOWEVENT){
+                if(event.window.event == SDL_WINDOWEVENT_FOCUS_LOST){
+                    #ifdef __DEBUG__
+                    spdlog::get("console_log")->info("window lost focuse");
+                    #endif
+                    isfocuse = false;
+                    step();
+                }
+                if(event.window.event == SDL_WINDOWEVENT_FOCUS_GAINED){
+                    #ifdef __DEBUG__
+                    spdlog::get("console_log")->info("window  gain focuse");
+                    #endif
+                    isfocuse = true;
+                }
+            }
+            if(isfocuse){
+                map.eventHandle(event);
+                Cell::postAllEvents(event);
+                Button::postAllEvents(event);
+            }
         }
     }
     
@@ -569,22 +674,62 @@ public:
     }
     
     void update(){
-        map.update(render);
-        if(map.getUncoverdNum() == map.getRow()*map.getCol()-map.getBombnum())
+#ifdef __DEBUG__
+        double time = clock();
+#endif
+#ifdef __DEBUG__
+        time = clock();
+#endif
+        map.update();
+#ifdef __DEBUG__
+        spdlog::get("console_log")->debug("Main::update(), Map::update(), passed {} millisec", (clock()-time)/CLOCKS_PER_SEC*1000);
+#endif
+#ifdef __DEBUG__
+        time = clock();
+#endif
+        if(map.isFullUncoverd())
             b->show();
-        b->update(render);
+#ifdef __DEBUG__
+        spdlog::get("console_log")->debug("Main::update(), Map::isFullUncoverd(), passed {} millisec", (clock()-time)/CLOCKS_PER_SEC*1000);
+#endif
+#ifdef __DEBUG__
+        time = clock();
+#endif
+        b->update();
+#ifdef __DEBUG__
+        spdlog::get("console_log")->debug("Main::update(), Button::update(), passed {} millisec", (clock()-time)/CLOCKS_PER_SEC*1000);
+#endif
     }
     
     void step(){
+        #ifdef __DEBUG__
+        double time = clock();
+        #endif
+        clearScreen(255, 255 ,255);
+        #ifdef __DEBUG__
+        spdlog::get("console_log")->debug("Main::clearScreen(), passed {} millisec", (clock()-time)/CLOCKS_PER_SEC*1000);
+        #endif
+        #ifdef __DEBUG__
+        time = clock();
+        #endif
         update();
+        #ifdef __DEBUG__
+        spdlog::get("console_log")->debug("Main::step(), passed {} millisec", (clock()-time)/CLOCKS_PER_SEC*1000);
+        #endif
+        SDL_RenderPresent(render);
     }
     
     void run(){
         while(!isquit){
-            clearScreen(255, 255 ,255);
+            #ifdef __DEBUG__
+            double time = clock();
+            #endif
             handleEvent();
-            step();
-            SDL_RenderPresent(render);
+            #ifdef __DEBUG__
+            spdlog::get("console_log")->debug("Main::handleEvent, passed {} millisec", (clock()-time)/CLOCKS_PER_SEC*1000);
+            #endif
+            if(isfocuse)
+                step();
             SDL_Delay(delaytime);
         }
     }
@@ -592,8 +737,10 @@ public:
         SDL_DestroyWindow(window);
         SDL_DestroyRenderer(render);
         IMG_Quit();
-        Cell::clearInstances();
-        Button::clearInstances();
+        ImageStorage::cleanStorage();
+        Cell::cleanInstances();
+        Button::cleanInstances();
+        Director::freeDirector();
         SDL_Quit();
     }
 private:
@@ -604,19 +751,14 @@ private:
     int width;
     int height;
     int delaytime;
+    bool isfocuse;
     Map map;
     Button* b;
 };
 
 int main(int argc, char** argv){
-#ifndef __DEBUG__
     //game run
     Main gamebody(argc, argv);
     gamebody.run();
-#else
-    //debug module
-    Map map(400, 400, 10, 10, 10);
-    map.debugPrint();
-#endif
     return 0;
 }
