@@ -1,20 +1,20 @@
 /*
-a small game named saolei
-name: SaoLei
-author: VisualGMQ
-data: 2019.7.10
-
-compile with SDL2:
-    g++ main.cpp -o saolei `sdl2-config --libs --cflags` `pkg-config --libs --cflags SDL2_image` -std=c++11
-
-console options:
-    * eazy: open eazy model
-    * normal: open normal model
-    * hard: open hard model
-    * row col bomb_num: self-define map
-
-if you open it directly(not by console), it will show you normal model
-*/
+ a small game named saolei
+ name: SaoLei
+ author: VisualGMQ
+ data: 2019.7.10
+ 
+ compile with SDL2:
+ g++ main.cpp -o saolei `sdl2-config --libs --cflags` `pkg-config --libs --cflags SDL2_image` -std=c++11
+ 
+ console options:
+ * eazy: open eazy model
+ * normal: open normal model
+ * hard: open hard model
+ * row col bomb_num: self-define map
+ 
+ if you open it directly(not by console), it will show you normal model
+ */
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <ctime>
@@ -24,7 +24,7 @@ if you open it directly(not by console), it will show you normal model
 #include <iostream>
 #include <random>
 #include <map>
-#define __DEBUG__
+//#define __DEBUG__
 #ifdef __DEBUG__
 #include <spdlog/sinks/stdout_color_sinks.h>
 #endif
@@ -277,6 +277,7 @@ public:
         for(int i=0;i<map.size();i++)
             for(int j=0;j<map[0].size();j++)
                 calcuNum(i, j);
+        
     }
     
     void generateBomb(int row, int col){
@@ -572,12 +573,13 @@ class Main{
 public:
     Main(int argc, char** argv):width(600), height(600), delaytime(30), isquit(false),isfocuse(true){
         SDL_Init(SDL_INIT_EVERYTHING);
-        IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG|IMG_INIT_TIF|IMG_INIT_WEBP);
+        IMG_Init(IMG_INIT_JPG|IMG_INIT_PNG);
         window = SDL_CreateWindow("扫雷", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
         render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED|SDL_RENDERER_PRESENTVSYNC|SDL_RENDERER_TARGETTEXTURE);
         SDL_SetRenderDrawBlendMode(render, SDL_BLENDMODE_BLEND);
         paramParse(argc, argv);
         Director::initDirector(render);
+        setIcon("src/icon.jpg");
         loadImageResource();
         initButton();
 #ifdef __DEBUG__
@@ -586,7 +588,17 @@ public:
         console_log->info("Main init");
 #endif
     }
-
+    
+    void setIcon(string iconpath){
+        SDL_Surface* icon =  IMG_Load(iconpath.c_str());
+        if(icon == nullptr){
+            cout<<"no icon"<<endl;
+        }else{
+            SDL_SetWindowIcon(window, icon);
+            SDL_FreeSurface(icon);
+        }
+    }
+    
     void initButton(){
         b = Button::createInstance(B_OK);
         b->show(false);
@@ -638,7 +650,7 @@ public:
             }
         }else
             map.init(width, height, 20, 20, 50);
-            
+        
     }
     
     void handleEvent(){
@@ -647,16 +659,16 @@ public:
                 isquit = true;
             if(event.type == SDL_WINDOWEVENT){
                 if(event.window.event == SDL_WINDOWEVENT_FOCUS_LOST){
-                    #ifdef __DEBUG__
+#ifdef __DEBUG__
                     spdlog::get("console_log")->info("window lost focuse");
-                    #endif
+#endif
                     isfocuse = false;
                     step();
                 }
                 if(event.window.event == SDL_WINDOWEVENT_FOCUS_GAINED){
-                    #ifdef __DEBUG__
+#ifdef __DEBUG__
                     spdlog::get("console_log")->info("window  gain focuse");
-                    #endif
+#endif
                     isfocuse = true;
                 }
             }
@@ -702,32 +714,32 @@ public:
     }
     
     void step(){
-        #ifdef __DEBUG__
+#ifdef __DEBUG__
         double time = clock();
-        #endif
+#endif
         clearScreen(255, 255 ,255);
-        #ifdef __DEBUG__
+#ifdef __DEBUG__
         spdlog::get("console_log")->debug("Main::clearScreen(), passed {} millisec", (clock()-time)/CLOCKS_PER_SEC*1000);
-        #endif
-        #ifdef __DEBUG__
+#endif
+#ifdef __DEBUG__
         time = clock();
-        #endif
+#endif
         update();
-        #ifdef __DEBUG__
+#ifdef __DEBUG__
         spdlog::get("console_log")->debug("Main::step(), passed {} millisec", (clock()-time)/CLOCKS_PER_SEC*1000);
-        #endif
+#endif
         SDL_RenderPresent(render);
     }
     
     void run(){
         while(!isquit){
-            #ifdef __DEBUG__
+#ifdef __DEBUG__
             double time = clock();
-            #endif
+#endif
             handleEvent();
-            #ifdef __DEBUG__
+#ifdef __DEBUG__
             spdlog::get("console_log")->debug("Main::handleEvent, passed {} millisec", (clock()-time)/CLOCKS_PER_SEC*1000);
-            #endif
+#endif
             if(isfocuse)
                 step();
             SDL_Delay(delaytime);
