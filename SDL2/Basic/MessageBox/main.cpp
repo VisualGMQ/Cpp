@@ -9,6 +9,12 @@ void clean();
 SDL_Window* win = nullptr;
 SDL_Renderer* render = nullptr;
 SDL_Event event;
+SDL_MessageBoxData MBFlag;
+SDL_MessageBoxButtonData buttons[]={
+	{SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "return"},
+	{SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 1, "escape"},
+	{0										, 2, "button3"}
+};
 
 int main(){
 	if(init()==false)
@@ -26,6 +32,13 @@ bool init(){
 		return false;
 	if((render = SDL_CreateRenderer(win,-1,0))==nullptr)
 		return false;
+	MBFlag.window = NULL;
+	MBFlag.title = "user define msgBox";
+	MBFlag.message = "this is user default message";
+	MBFlag.numbuttons = 3;
+	MBFlag.colorScheme = NULL;
+	MBFlag.buttons = buttons;
+	MBFlag.flags = SDL_MESSAGEBOX_INFORMATION;
 	return true;
 }
 
@@ -41,6 +54,11 @@ void update(){
 			break;
 		case 2:
 			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,"error Box","this is a error  box",win);
+			scene++;
+			break;
+		case 3:
+			int buttonid;
+			SDL_ShowMessageBox(&MBFlag, &buttonid);
 			scene++;
 			break;
 	}
