@@ -107,8 +107,6 @@ public:
             obj2.aftercollision();
         }
     }
-private:
-    //TODO implement vector<Object> ???
 };
 
 //class Obstical
@@ -528,7 +526,6 @@ public:
     void updates(){
         snake.step();
         bhgroup.update();
-        //TODO may have bugs
         if(timecount >= 500)
             bhgroup.show();
     }

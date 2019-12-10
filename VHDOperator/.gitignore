@@ -1,0 +1,5 @@
+.vscode
+*.o
+Learn-ASM.vhd
+result.txt
+exe

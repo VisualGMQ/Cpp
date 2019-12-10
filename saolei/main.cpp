@@ -117,7 +117,6 @@ protected:
 enum CellType{NO_BOMB, HAS_BOMB};
 enum CellState{COVERED, NO_COVERED, HAS_FLAG};
 
-//TODO add picture on surfae
 class Cell:public UIitem{
 public:
     static void postAllEvents(const SDL_Event& nevent){
