@@ -32,12 +32,14 @@ void ReadString(ifstream& f, uint8_t* str, int len){
     str[len] = '\0';
 }
 
+/*
 VHDNotFound::VHDNotFound(const string filename):file(filename){
 }
 
 const char* VHDNotFound::what()const noexcept{
     return (file+" not found").c_str();
 }
+*/
 
 void FixedVHD::Open(string filename){
     ifstream file(filename);
@@ -45,7 +47,9 @@ void FixedVHD::Open(string filename){
     char byte[4];
     char word[8];
     if(file.fail())
-        throw VHDNotFound(filename);
+        failed = true;
+    else
+        failed = false;
     file.seekg(-512, ios::end);
     ReadString(file, head.identification, 8);
     ReadDoubleWord(file, head.feature);
@@ -77,6 +81,12 @@ void FixedVHD::Open(string filename){
     totlesize = file.tellg();
     contentsize =  totlesize - 512;
     file.close();
+}
+
+FixedVHD::FixedVHD():failed(true),totlesize(0),contentsize(0){}
+
+bool FixedVHD::fail(){
+    return failed;
 }
 
 FixedVHD::FixedVHD(string filename):filepath(filename){
@@ -169,36 +179,45 @@ ostream& operator<<(ostream& o, FixedVHD& vhd){
     return o;
 }
 
-void FixedVHD::Read(unsigned int count, void* buffer){
+bool FixedVHD::Read(unsigned int count, void* buffer){
+    if(count>GetContentSize()/SECTION_SIZE){
+        cerr<<"read beyond bound"<<endl;
+        return false;
+    }
     ifstream file(filepath);
+    file.seekg(SECTION_SIZE*count, ios::beg);
     file.read((char*)buffer, SECTION_SIZE);
     file.close();
+    return true;
 }
 
-void FixedVHD::Write(unsigned int start, void* data, int size){
-    if(size+start>contentsize){
+bool FixedVHD::Write(unsigned int start, void* data, int size){
+    if((size+start)*SECTION_SIZE>contentsize){
         cerr<<"Beyond the scope of VHD"<<endl;
-        return ;
+        return false;
     }
     if(size<0){
         cerr<<"size most big than 0"<<endl;
-        return ;
+        return false;
     }
     if(size==0)
-        return ;
-    ofstream file(filepath, ios::app);
-    file.seekp(ios::beg);
+        return false;
+    cout<<"write "<<size<<" at "<<start<<endl;
+    //app模式是一定写在后面的，seekp也无效。所以这里不能用app模式
+    fstream file(filepath, ios::binary|ios::out|ios::in);
+    file.seekp(start*SECTION_SIZE, ios::beg);
     char* buffer = nullptr;
     unsigned int final_size;
     if(size%SECTION_SIZE!=0)
         final_size = (size/SECTION_SIZE+1)*SECTION_SIZE;
     else
-        final_size = size;    
+        final_size = size;
+    cout<<"final size:"<<final_size<<endl;
     buffer = new char[final_size];
     memset(buffer, 0, final_size);
     memcpy(buffer, data, size);
-    cout<<"size:"<<size<<endl
-        <<"final_size:"<<final_size<<endl;
     file.write(buffer, final_size);
     file.close();
+    delete buffer;
+    return true;
 }

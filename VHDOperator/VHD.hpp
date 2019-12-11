@@ -15,6 +15,7 @@ void ReadDoubleWord(ifstream& f, uint32_t& doubleword);
 void ReadQuad(ifstream& f, uint64_t& quad);
 void ReadString(ifstream& f, uint8_t* str, int len);
 
+/*
 class VHDNotFound:public exception{
 public:
     VHDNotFound(const string filename);
@@ -22,6 +23,7 @@ public:
 private:
     const string file;
 };
+*/
 
 /**
  * @brief 用于操作固定VHD文件的类
@@ -68,7 +70,8 @@ public:
         //uint8_t  reserv[427];     /**< 保留字段，全部为0         426字节 */
     };
 
-    FixedVHD(string filename);
+    FixedVHD();
+    explicit FixedVHD(string filename);
     void Open(string filename);
     /**
      * @brief 获得尾部的信息
@@ -113,8 +116,9 @@ public:
      * 
      * @param count 读取的扇区号
      * @param buffer 缓冲区，最后的结果会放入里面
+     * @return bool
      */
-    void Read(unsigned int count, void* buffer);
+    bool Read(unsigned int count, void* buffer);
     /**
      * @brief 写入扇区
      * 
@@ -123,13 +127,16 @@ public:
      * @param start 开始的扇区号
      * @param data 数据
      * @param size 数据大小
+     * @return bool
      */
-    void Write(unsigned int start, void* data, int size);
+    bool Write(unsigned int start, void* data, int size);
+    bool fail();
 private:
     FixedVHD_Head head;
     unsigned long long totlesize;
     unsigned long long contentsize;
     string filepath;
+    bool failed;
 };
 
 ostream& operator<<(ostream& o, FixedVHD& vhd);

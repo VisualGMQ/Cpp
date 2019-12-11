@@ -1,9 +1,11 @@
-exe:main.o VHD.o
-	g++ main.o VHD.o -o exe -std=c++11
-main.o:VHD.o
-	g++ main.cpp -c -std=c++11
-VHD.o:
+FixedVHDWriter:FixedVHDWriter.cpp VHD.o
+	g++ FixedVHDWriter.cpp VHD.o -o FixedVHDWriter -std=c++11
+test:test.o VHD.o
+	g++ test.o VHD.o -o test -std=c++11
+test.o:VHD.o
+	g++ test.cpp -c -std=c++11
+VHD.o:VHD.hpp VHD.cpp
 	g++ VHD.cpp -c -std=c++11
 .PHONY:clean
 clean:
-	-rm *.o exe
+	-rm *.o test
