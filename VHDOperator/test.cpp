@@ -3,7 +3,7 @@
 using namespace std;
 
 int main(int argc, char** argv){
-    FixedVHD vhd("Learn-ASM.vhd");
+    FixedVHD vhd("resource/Learn-ASM.vhd");
     cout<<vhd;
     return 0;
 }

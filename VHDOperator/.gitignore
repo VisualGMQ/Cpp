@@ -1,8 +1,8 @@
 .vscode
+.idea
 *.o
-Learn-ASM.vhd
-result.txt
-exe
-dump.sh
-dump.txt
-testfile.txt
+resource
+script
+build
+resource/testfile.txt
+FixedVHDWriter
